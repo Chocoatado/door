@@ -34,9 +34,91 @@ canvas{
 	background:#333;
 }
 #screen_three{
-	background:#fff;
-
+	background: linear-gradient(135deg, #ffece6 0%, #fff0f5 100%);
+    position: relative;
+    overflow: hidden;
 }
+.gradient-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(255, 240, 245, 0.7) 70%);
+    z-index: 0;
+}
+
+.floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.decorative-frame {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    right: 50px;
+    bottom: 50px;
+    z-index: 0;
+}
+
+.frame-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M30,30 L0,30 C0,13.4315 13.4315,0 30,0 L30,30 Z" fill="%23ff7f29" fill-opacity="0.2"/></svg>');
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M0,0 L30,0 C30,16.5685 16.5685,30 0,30 L0,0 Z" fill="%23ff7f29" fill-opacity="0.2"/></svg>');
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M30,0 L30,30 C13.4315,30 0,16.5685 0,0 L30,0 Z" fill="%23ff7f29" fill-opacity="0.2"/></svg>');
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path d="M0,30 L0,0 C16.5685,0 30,13.4315 30,30 L0,30 Z" fill="%23ff7f29" fill-opacity="0.2"/></svg>');
+}
+
+.frame-edge {
+    position: absolute;
+    background-color: rgba(255, 127, 41, 0.1);
+}
+
+.frame-edge.top, .frame-edge.bottom {
+    height: 2px;
+    left: 30px;
+    right: 30px;
+}
+
+.frame-edge.left, .frame-edge.right {
+    width: 2px;
+    top: 30px;
+    bottom: 30px;
+}
+
+.frame-edge.top { top: 0; }
+.frame-edge.right { right: 0; }
+.frame-edge.bottom { bottom: 0; }
+.frame-edge.left { left: 0; }
+
 #canvas_container{
 	width:940px;
 	height:380px;
@@ -218,4 +300,82 @@ input#your_link{
 	margin: auto;
 	top:0; left:0; right:0; bottom:0;
 	width:100%; height:50px;
+}
+
+
+#heartfelt_message {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(255, 127, 41, 0.15);
+    padding: 40px;
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    width: 800px;
+    height: 550px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 25px;
+    text-align: center;
+    color: #444;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    padding: 20px;
+}
+
+#heartfelt_message h1 {
+    color: #ff7f29;
+    font-size: 40px;
+    margin-bottom: 30px;
+    font-weight: normal;
+    text-shadow: 0 2px 4px rgba(255, 127, 41, 0.2);
+}
+
+#heartfelt_message p {
+    margin: 20px 0;
+    color: #555;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+#heartfelt_message .signature {
+    font-size: 30px;
+    margin-top: 40px;
+    color: #ff7f29;
+    font-style: italic;
+}
+
+.sparkle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,0 L15,9 L24,12 L15,15 L12,24 L9,15 L0,12 L9,9 L12,0 Z" fill="%23ff7f29" fill-opacity="0.7"/></svg>');
+    background-size: contain;
+    z-index: 2;
+}
+
+.sparkle1 {
+    top: 50px;
+    right: 70px;
+}
+
+.sparkle2 {
+    bottom: 80px;
+    left: 60px;
+}
+
+.sparkle3 {
+    top: 150px;
+    left: 40px;
+}
+
+/* Enhanced animations for existing items */
+#heartfelt_message .animate-item, .animate-special {
+    opacity: 0;
+    transform: translateY(20px);
+    position: relative;
 }
