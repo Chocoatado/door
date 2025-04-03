@@ -790,83 +790,83 @@ function reset(){
 // Simple XOR encryption (key = 1)
 // The only purpose is to obscure it in the hash
 
-function encryptString(string){
-	var result = "";
-	for(var i=0;i<string.length;i++){
-		result += String.fromCharCode(string.charCodeAt(i)^1);
-	}
-	return result;
-}
-function decryptString(string){
-	return encryptString(string); // it's XOR, duh
-}
+// function encryptString(string){
+// 	var result = "";
+// 	for(var i=0;i<string.length;i++){
+// 		result += String.fromCharCode(string.charCodeAt(i)^1);
+// 	}
+// 	return result;
+// }
+// function decryptString(string){
+// 	return encryptString(string); // it's XOR, duh
+// }
 
-var yourMessage = document.getElementById("your_message");
-var yourLink = document.getElementById("your_link");
-function linkChangey(){
-	if(yourMessage.value==""){
-		yourLink.value = "http://ncase.me/door/";
-	}else{
-		yourLink.value = "http://ncase.me/door/#"+encodeURIComponent(encryptString(yourMessage.value));
-	}
-};
-yourMessage.onchange = linkChangey;
-yourMessage.oninput = linkChangey;
-linkChangey();
-yourLink.onclick = function(){
-	yourLink.select();
-};
+// var yourMessage = document.getElementById("your_message");
+// var yourLink = document.getElementById("your_link");
+// function linkChangey(){
+// 	if(yourMessage.value==""){
+// 		yourLink.value = "http://ncase.me/door/";
+// 	}else{
+// 		yourLink.value = "http://ncase.me/door/#"+encodeURIComponent(encryptString(yourMessage.value));
+// 	}
+// };
+// yourMessage.onchange = linkChangey;
+// yourMessage.oninput = linkChangey;
+// linkChangey();
+// yourLink.onclick = function(){
+// 	yourLink.select();
+// };
 
-function socialShare(event,type){
+// function socialShare(event,type){
 
-	var link = yourLink.value;
-	var title = "it's a(door)able";
-	var url = "";
-	var width = 640;
-	var height = 480;
+// 	var link = yourLink.value;
+// 	var title = "it's a(door)able";
+// 	var url = "";
+// 	var width = 640;
+// 	var height = 480;
 
-	switch(type){
-		case "facebook":
-			url += "https://www.facebook.com/sharer.php?u="+encodeURIComponent(link);
-			url += "&t="+encodeURIComponent("A lovely message for all my dear friends. This minigame only takes a minute to play, check it out! it's a(door)able --");
-			width = 626;
-			height = 436;
-			break;
-		case "twitter":
-			url += "https://twitter.com/share?url="+encodeURIComponent(link);
-			url += "&text="+encodeURIComponent("A lovely message for all my dear followers, in this 1-min minigame. http://pic.twitter.com/DK5vnPzEVn"); // add twitter pic.
-			url += "&via=ncasenmare";
-			width = 640;
-			height = 400;
-			break;
-		case "plus":
-			url += "https://plus.google.com/share?url="+encodeURIComponent(link);
-			width = 600;
-			height = 460;
-			break;
-		case "tumblr":
-			url += "https://www.tumblr.com/share/link?url="+encodeURIComponent(link);
-			url += "&name="+encodeURIComponent("it's a(door)able");
-			url += "&description="+encodeURIComponent("A lovely message for all my dear followers, in this 1-min minigame.");
-			width = 446;
-			height = 430;
-			break;
-		case "reddit":
-			window.open('http://www.reddit.com/submit?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(link)+'&amp;title='+encodeURIComponent("it's a(door)able: a one-minute minigame"), "reddit",'toolbar=no,width=700,height=550');
-			return false;
-			break;
-		case "stumbleupon":
-			url += "http://www.stumbleupon.com/submit?url="+encodeURIComponent(link);
-			break;
-	}
+// 	switch(type){
+// 		case "facebook":
+// 			url += "https://www.facebook.com/sharer.php?u="+encodeURIComponent(link);
+// 			url += "&t="+encodeURIComponent("A lovely message for all my dear friends. This minigame only takes a minute to play, check it out! it's a(door)able --");
+// 			width = 626;
+// 			height = 436;
+// 			break;
+// 		case "twitter":
+// 			url += "https://twitter.com/share?url="+encodeURIComponent(link);
+// 			url += "&text="+encodeURIComponent("A lovely message for all my dear followers, in this 1-min minigame. http://pic.twitter.com/DK5vnPzEVn"); // add twitter pic.
+// 			url += "&via=ncasenmare";
+// 			width = 640;
+// 			height = 400;
+// 			break;
+// 		case "plus":
+// 			url += "https://plus.google.com/share?url="+encodeURIComponent(link);
+// 			width = 600;
+// 			height = 460;
+// 			break;
+// 		case "tumblr":
+// 			url += "https://www.tumblr.com/share/link?url="+encodeURIComponent(link);
+// 			url += "&name="+encodeURIComponent("it's a(door)able");
+// 			url += "&description="+encodeURIComponent("A lovely message for all my dear followers, in this 1-min minigame.");
+// 			width = 446;
+// 			height = 430;
+// 			break;
+// 		case "reddit":
+// 			window.open('http://www.reddit.com/submit?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(link)+'&amp;title='+encodeURIComponent("it's a(door)able: a one-minute minigame"), "reddit",'toolbar=no,width=700,height=550');
+// 			return false;
+// 			break;
+// 		case "stumbleupon":
+// 			url += "http://www.stumbleupon.com/submit?url="+encodeURIComponent(link);
+// 			break;
+// 	}
 
-	return sharePopup.call(this,event,{
-		href: url,
-		width: width,
-		height: height
-	});
+// 	return sharePopup.call(this,event,{
+// 		href: url,
+// 		width: width,
+// 		height: height
+// 	});
 
-}
+// }
 
 
 ///////////////////////////////////////////////////////////////////
