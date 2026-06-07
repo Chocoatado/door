@@ -889,7 +889,7 @@ window.INTRO_LEVEL = {
 	door:{ x:cx+150, y:cy-30 },
 	key:{ x:cx, y:cy+125 },
 	circles: [
-		{x:cx,y:cy,radius:120,invisible:true}
+		{x:cx,y:cy,radius:120}
 	]
 
 };
