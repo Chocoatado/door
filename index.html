@@ -1,38 +1,41 @@
-<!doctype>
+<!doctype html>
 <html>
 <head>
-
-	<!-- Place this data between the <head> tags of your website -->
-	<title>it's a(door)able</title>
-	<meta name="description" content="a one-minute minigame."/>
+	<title>Happy Birthday to Niuniu</title>
+	<meta name="description" content="A birthday surprise for Niuniu."/>
 	<link rel="icon" type="image/png" href="favicon.png">
 
-	<!-- Schema.org markup for Google+ -->
-	<meta itemprop="name" content="it's a(door)able">
-	<meta itemprop="description" content="a one-minute minigame.">
-	<meta itemprop="image" content="http://ncase.me/door/thumbnail.png">
+	<meta itemprop="name" content="Happy Birthday to Niuniu">
+	<meta itemprop="description" content="A birthday surprise for Niuniu.">
+	<meta itemprop="image" content="thumbnail.png">
 
-	<!-- Open Graph data -->
-	<meta property="og:title" content="it's a(door)able">
+	<meta property="og:title" content="Happy Birthday to Niuniu">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="http://ncase.me/door/">
-	<meta property="og:image" content="http://ncase.me/door/thumbnail.png">
-	<meta property="og:description" content="a one-minute minigame.">
-	<meta property="og:site_name" content="it's a(door)able">
+	<meta property="og:image" content="thumbnail.png">
+	<meta property="og:description" content="A birthday surprise for Niuniu.">
+	<meta property="og:site_name" content="Happy Birthday to Niuniu">
 
-	<!-- Style -->
 	<link rel="stylesheet" type="text/css" href="css/index.css"> 
-
 </head>
+
 <body>
 
 	<div id="loading"><div>LOADING</div></div>
 
 	<div id="whole_container">
 
-		<!--span style="display:none"-->
 		<div id="screen_one">
 			<canvas id="canvas_intro"></canvas>
+
+			<div id="birthday_title_layer">
+				<div class="intro_circle"></div>
+
+				<div class="birthday_words">
+					<div class="birthday_heart">♡</div>
+					<h1>happy birthday<br>to Niuniu</h1>
+					<p>press arrow keys to move</p>
+				</div>
+			</div>
 		</div>
 
 		<div id="screen_two">
@@ -48,66 +51,130 @@
 
 			</div>
 		</div>
-		<!--/span-->
 
 		<div id="screen_three">
+			<div id="birthday_end">
 
-			<div id="bottom">
-				<a href="https://twitter.com/ncasenmare">made by @ncasenmare</a>
-				|
-				<a href="https://github.com/ncase/door">open source code</a>
-			</div>
+				<h1 class="end_title">A little birthday letter for you ♡</h1>
 
-			<div id="end_container">
-				
-				<span style="font-size:38px;">P.S: you can add your own personal message!</span>
-				<input id="your_message" placeholder="(enter lovely message)"></input>
-				
-				<span>then just copy &amp; send this link to your lover(s):</span>
-				<input id="your_link" readonly></input>
+				<button id="envelopeBtn" class="envelope" type="button">
+					<div class="envelope_flap"></div>
+					<div class="envelope_body"></div>
+					<div class="envelope_heart">♡</div>
+				</button>
 
-				<span>or, if you wanna send your message out to everyone:</span>
-				<div id="share">
-					<div id="share_facebook" onclick="return socialShare.call(this,event,'facebook');"></div>
-					<div id="share_twitter" onclick="return socialShare.call(this,event,'twitter');"></div>
-					<div id="share_plus" onclick="return socialShare.call(this,event,'plus');"></div>
-					<div id="share_tumblr" onclick="return socialShare.call(this,event,'tumblr');"></div>
-					<div id="share_reddit" onclick="return socialShare.call(this,event,'reddit');"></div>
-					<div id="share_stumbleupon" onclick="return socialShare.call(this,event,'stumbleupon');"></div>
+				<p class="tap_hint">Tap the envelope</p>
+
+				<div id="end_container" style="display:none;">
+					<input id="your_message" placeholder=""></input>
+					<input id="your_link" readonly></input>
+
+					<div id="share">
+						<div id="share_facebook"></div>
+						<div id="share_twitter"></div>
+						<div id="share_plus"></div>
+						<div id="share_tumblr"></div>
+						<div id="share_reddit"></div>
+						<div id="share_stumbleupon"></div>
+					</div>
 				</div>
-
-				<span style="font-size:10px;color: #999;">
-					<span style="font-size: 19px;">and lastly, if you wanna show this</span>
-					<br>
-					<span style="font-size: 16px;">minigame's creator some love, you can</span>
-					<br>
-					<a href="https://www.patreon.com/ncase" target="_blank" style="text-decoration: none;">
-						<div id="support">support me on patreon</div>
-					</a>
-					<span style="font-size: 24px;">so I can keep making free</span>
-					<br>
-					<span style="font-size: 20px;">open-source playable silliness.</span>
-				</span>
-
-				<br>
-				<br>
-
-				<span style="font-size:30px">
-					thanks for playing! &lt;3
-				</span>
 
 			</div>
 		</div>
 		
 	</div>
+
+	<div id="pageNav" class="page_nav">
+		<button id="prevPage" type="button">the past surprise</button>
+		<button id="nextPage" type="button">the next surprise</button>
+	</div>
+
+	<div id="letterModal" class="letter_modal">
+		<div class="letter_paper">
+			<button id="closeLetter" class="close_letter" type="button">×</button>
+
+			<img class="letter_image" src="assets/letter.jpg" alt="birthday letter">
+
+		</div>
+	</div>
+
+	<script src="js/Key.js"></script>
+	<script src="js/game.js"></script>
+	<script src="js/popup.js"></script>
+	<script src="js/soundjs-0.6.0.min.js"></script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			var envelopeBtn = document.getElementById("envelopeBtn");
+			var letterModal = document.getElementById("letterModal");
+			var closeLetter = document.getElementById("closeLetter");
+
+			envelopeBtn.addEventListener("click", function () {
+				letterModal.classList.add("show");
+			});
+
+			closeLetter.addEventListener("click", function () {
+				letterModal.classList.remove("show");
+			});
+
+			letterModal.addEventListener("click", function (event) {
+				if (event.target === letterModal) {
+					letterModal.classList.remove("show");
+				}
+			});
+
+			var currentPage = 1;
+			var totalPages = 3;
+			var wholeContainer = document.getElementById("whole_container");
+			var prevPage = document.getElementById("prevPage");
+			var nextPage = document.getElementById("nextPage");
+
+			function goToPage(pageNumber) {
+				if (pageNumber < 1) {
+					pageNumber = 1;
+				}
+
+				if (pageNumber > totalPages) {
+					pageNumber = totalPages;
+				}
+
+				currentPage = pageNumber;
+				wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
+
+				if (currentPage === 1) {
+					prevPage.style.display = "none";
+				} else {
+					prevPage.style.display = "inline-block";
+				}
+
+				if (currentPage === 3) {
+					nextPage.style.display = "none";
+				} else {
+					nextPage.style.display = "inline-block";
+				}
+			}
+
+			prevPage.addEventListener("click", function () {
+				goToPage(currentPage - 1);
+			});
+
+			nextPage.addEventListener("click", function () {
+				goToPage(currentPage + 1);
+			});
+
+			document.addEventListener("keydown", function (event) {
+				if (event.key === "PageUp") {
+					goToPage(currentPage - 1);
+				}
+
+				if (event.key === "PageDown") {
+					goToPage(currentPage + 1);
+				}
+			});
+
+			goToPage(1);
+		});
+	</script>
+
 </body>
 </html>
-
-<script src="js/Key.js"></script>
-<script src="js/game.js"></script>
-<script src="js/popup.js"></script>
-<script src="js/soundjs-0.6.0.min.js"></script>
-
-<script>
-//STAGE = 4;
-</script>
