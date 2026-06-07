@@ -105,11 +105,13 @@ function Level(config,isIntro){
 		}
 
 // Draw circles
-ctx.fillStyle = '#787785';
+ctx.fillStyle = "#787785";
 
 for(var i=0;i<self.circles.length;i++){
 	var c = self.circles[i];
-	if(c.invisible) continue;
+
+	// 第一页的大圆即使被设置成 invisible，也要画出来
+	if(c.invisible && !(self.isIntro && c.radius > 80)) continue;
 
 	ctx.beginPath();
 	ctx.arc(c.x, c.y, c.radius, 0, Math.TAU, false);
