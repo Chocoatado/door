@@ -104,15 +104,17 @@ function Level(config,isIntro){
 			objects[i].drawShadow(ctx);
 		}
 
-		// Draw circles
-		ctx.fillStyle = '#787785';
-		for(var i=0;i<self.circles.length;i++){
-			var c = self.circles[i];
-			if(c.invisible) continue;
-			ctx.beginPath();
-			ctx.arc(c.x, c.y, c.radius, 0, Math.TAU, false);
-			ctx.fill();
-		}
+// Draw circles
+ctx.fillStyle = '#787785';
+
+for(var i=0;i<self.circles.length;i++){
+	var c = self.circles[i];
+	if(c.invisible) continue;
+
+	ctx.beginPath();
+	ctx.arc(c.x, c.y, c.radius, 0, Math.TAU, false);
+	ctx.fill();
+}
 
 		// Draw Peep, Key, Door in depth
 		objects.sort(function(a,b){ return a.y - b.y; });
