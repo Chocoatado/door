@@ -59,7 +59,7 @@ canvas {
 	top: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
-	color: white;
+	color: #DEB7B8;
 	width: 900px;
 }
 
@@ -74,7 +74,7 @@ canvas {
 
 .birthday_words p {
 	margin-top: 34px;
-	color: white;
+	color: #DEB7B8;
 	font-size: 22px;
 	font-weight: 100;
 }
