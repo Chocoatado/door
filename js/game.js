@@ -94,7 +94,7 @@ function Level(config,isIntro){
 			ctx.clearRect(self.key.x-100,self.key.y-100,200,200);
 			ctx.clearRect(self.door.x-100,self.door.y-100,200,200);
 		}else{
-			ctx.fillStyle = "#787785";
+			ctx.fillStyle = "#FFFFFF";
 			ctx.fillRect(0,0,self.width,self.height);
 		}
 
