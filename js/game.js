@@ -94,7 +94,7 @@ function Level(config,isIntro){
 			ctx.clearRect(self.key.x-100,self.key.y-100,200,200);
 			ctx.clearRect(self.door.x-100,self.door.y-100,200,200);
 		}else{
-			ctx.fillStyle = "#fff";
+			ctx.fillStyle = "#787785";
 			ctx.fillRect(0,0,self.width,self.height);
 		}
 
@@ -105,7 +105,7 @@ function Level(config,isIntro){
 		}
 
 		// Draw circles
-		ctx.fillStyle = '#333';
+		ctx.fillStyle = '#787785';
 		for(var i=0;i<self.circles.length;i++){
 			var c = self.circles[i];
 			if(c.invisible) continue;
@@ -133,7 +133,7 @@ function Level(config,isIntro){
 
 			var pctx = self.pathContext;
 			pctx.beginPath();
-			pctx.strokeStyle = "#cc2727";
+			pctx.strokeStyle = "#DEB7B8";
 			pctx.lineWidth = 10;
 			pctx.lineCap = "round";
 			pctx.lineJoin = "round";
@@ -734,7 +734,7 @@ function iHeartYou(){
 	}
 
 	document.getElementById("canvas_container").style.backgroundPosition = "0px -390px";
-	document.getElementById("screen_two").style.background = "#000";
+	document.getElementById("screen_two").style.background = "#787785";
 	
 	var can_cont_text = document.getElementById("canvas_container_text");
 
