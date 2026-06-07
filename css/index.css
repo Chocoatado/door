@@ -352,3 +352,6 @@ canvas {
 		transform: translateY(-18px);
 	}
 }
+.birthday_words h1 {
+	text-transform: none !important;
+}
