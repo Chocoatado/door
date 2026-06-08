@@ -130,7 +130,7 @@ canvas {
 
 /* 第三页 */
 #screen_three {
-	background: #FDEBEB;
+	background: #FEBEBE;
 }
 
 #birthday_end {
@@ -165,7 +165,7 @@ canvas {
 	bottom: 0;
 	width: 230px;
 	height: 138px;
-	background: #FDEBEB;
+	background: #DEB7B8;
 	border-radius: 18px;
 	box-shadow: 0 16px 40px rgba(120, 119, 133, 0.28);
 }
