@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Happy Birthday to Niuniu</title>
 	<meta name="description" content="A Birthday Surprise for Niuniu."/>
 	<link rel="icon" type="image/png" href="favicon.png">
@@ -88,14 +89,22 @@
 		<button id="nextPage" type="button">the next surprise</button>
 	</div>
 
-	<div id="letterModal" class="letter_modal">
+<div id="letterModal" class="letter_modal">
+	<div class="letter_scene">
+
+		<div class="modal_envelope">
+			<div class="modal_envelope_flap"></div>
+			<div class="modal_envelope_body"></div>
+			<div class="modal_envelope_heart">♡</div>
+		</div>
+
 		<div class="letter_paper">
 			<button id="closeLetter" class="close_letter" type="button">×</button>
-
-			<img class="letter_image" src="assets/letter.jpg" alt="birthday letter">
-
+			<div id="typedLetter" class="typed_letter"></div>
 		</div>
+
 	</div>
+</div>
 
 <script src="js/Key.js?v=1"></script>
 <script src="js/game.js?v=white-road-final-1"></script>
@@ -107,20 +116,79 @@
 			var envelopeBtn = document.getElementById("envelopeBtn");
 			var letterModal = document.getElementById("letterModal");
 			var closeLetter = document.getElementById("closeLetter");
+			var typedLetter = document.getElementById("typedLetter");
+var typingTimer = null;
 
-			envelopeBtn.addEventListener("click", function () {
-				letterModal.classList.add("show");
-			});
+var letterText = `NiuNiu：
 
-			closeLetter.addEventListener("click", function () {
-				letterModal.classList.remove("show");
-			});
+生日快乐呀。
 
-			letterModal.addEventListener("click", function (event) {
-				if (event.target === letterModal) {
-					letterModal.classList.remove("show");
-				}
-			});
+这是一封偷偷藏在小网页里的信。
+本来想做得很厉害一点，
+但做着做着发现，
+好像只要是给你的，
+哪怕幼稚一点也很可爱。
+
+希望你新的一岁，
+开心多一点，烦恼少一点，
+想做的事情都慢慢实现。
+
+今天你是主角。
+所以，请认真开心一下。
+
+生日快乐，我的小寿星 ♡`;
+
+function startTypingLetter() {
+	clearTimeout(typingTimer);
+	typedLetter.textContent = "";
+
+	var index = 0;
+	var TYPE_SPEED = 85;
+
+	function typeNextChar() {
+		if (index >= letterText.length) {
+			return;
+		}
+
+		var currentChar = letterText.charAt(index);
+		typedLetter.textContent += currentChar;
+		index++;
+
+		var delay = TYPE_SPEED;
+
+		if ("，。！？、；：".indexOf(currentChar) !== -1) {
+			delay = 260;
+		}
+
+		if (currentChar === "\n") {
+			delay = 420;
+		}
+
+		typingTimer = setTimeout(typeNextChar, delay);
+	}
+
+	typeNextChar();
+}
+
+envelopeBtn.addEventListener("click", function () {
+	letterModal.classList.add("show");
+
+	setTimeout(function () {
+		startTypingLetter();
+	}, 1000);
+});
+
+closeLetter.addEventListener("click", function () {
+	letterModal.classList.remove("show");
+	clearTimeout(typingTimer);
+});
+
+letterModal.addEventListener("click", function (event) {
+	if (event.target === letterModal) {
+		letterModal.classList.remove("show");
+		clearTimeout(typingTimer);
+	}
+});
 
 			var currentPage = 1;
 			var totalPages = 3;
