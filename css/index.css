@@ -1,713 +1,162 @@
-body {
-	margin: 0;
-	font-family: Helvetica, Arial, sans-serif;
-	font-weight: 100;
-	overflow: hidden;
-	background: #FDEBEB;
-}
+body {margin: 0;font-family: Helvetica, Arial, sans-serif;font-weight: 100;overflow: hidden;background: #FDEBEB;}
 
-canvas {
-	float: left;
-	margin-right: 20px;
-}
+canvas {float: left;margin-right: 20px;}
 
-#whole_container {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0px;
-	-webkit-transition: top 1s ease-in-out;
-	-moz-transition: top 1s ease-in-out;
-	-ms-transition: top 1s ease-in-out;
-	transition: top 1s ease-in-out;
-}
+#whole_container {position: absolute;width: 100%;height: 100%;top: 0px;-webkit-transition: top 1s ease-in-out;-moz-transition: top 1s ease-in-out;-ms-transition: top 1s ease-in-out;transition: top 1s ease-in-out;}
 
-#screen_one,
-#screen_two,
-#screen_three {
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
+#screen_one,#screen_two,#screen_three {width: 100%;height: 100%;position: relative;}
 
-/* 第一页 */
-#screen_one {
-	background-color: #FDEBEB;
-	background-image: none !important;
-	overflow: hidden;
-}
+/* 第一页 */#screen_one {background-color: #FDEBEB;background-image: none !important;overflow: hidden;}
 
-#canvas_intro {
-	position: relative;
-	z-index: 2;
-}
+#canvas_intro {position: relative;z-index: 2;}
 
-#birthday_title_layer {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 3;
-	pointer-events: none;
-}
+#birthday_title_layer {position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 3;pointer-events: none;}
 
+.birthday_words {position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);text-align: center;color: #DEB7B8;width: 900px;}
 
-.birthday_words {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	color: #DEB7B8;
-	width: 900px;
-}
+.birthday_words h1 {margin: 0;font-size: 72px;line-height: 0.9;font-weight: 100;letter-spacing: 2px;text-transform: none;}
 
-.birthday_words h1 {
-	margin: 0;
-	font-size: 72px;
-	line-height: 0.9;
-	font-weight: 100;
-	letter-spacing: 2px;
-	text-transform: none;
-}
+.birthday_words p {margin-top: 34px;color: #DEB7B8;font-size: 22px;font-weight: 100;}
 
-.birthday_words p {
-	margin-top: 34px;
-	color: #DEB7B8;
-	font-size: 22px;
-	font-weight: 100;
-}
+.birthday_heart {font-size: 64px;color: #DEB7B8;line-height: 1;animation: heartbeat 1.3s infinite;}
 
-.birthday_heart {
-	font-size: 64px;
-	color: #DEB7B8;
-	line-height: 1;
-	animation: heartbeat 1.3s infinite;
-}
+/* 第二页 */#screen_two {background: #787785;}
 
-/* 第二页 */
-#screen_two {
-	background: #787785;
-}
+#canvas_container {width: 940px;height: 380px;position: absolute;margin: auto;top: 0;left: 0;right: 0;bottom: 0;background-image: none !important;background-color: #787785;}
 
-#canvas_container {
-	width: 940px;
-	height: 380px;
-	position: absolute;
-	margin: auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-image: none !important;
-	background-color: #787785;
-}
+#valentines_text,#rewind_text,#replay_text {display: none;position: absolute;bottom: 0;width: 100%;height: 50px;color: #DEB7B8;font-size: 30px;text-align: center;letter-spacing: 0px;-webkit-transition: letter-spacing 5s ease-out;-moz-transition: letter-spacing 5s ease-out;-ms-transition: letter-spacing 5s ease-out;transition: letter-spacing 5s ease-out;}
 
-#valentines_text,
-#rewind_text,
-#replay_text {
-	display: none;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 50px;
-	color: #DEB7B8;
-	font-size: 30px;
-	text-align: center;
-	letter-spacing: 0px;
-	-webkit-transition: letter-spacing 5s ease-out;
-	-moz-transition: letter-spacing 5s ease-out;
-	-ms-transition: letter-spacing 5s ease-out;
-	transition: letter-spacing 5s ease-out;
-}
+#rewind_text,#replay_text {color: #DEB7B8;letter-spacing: 2px;}
 
-#rewind_text,
-#replay_text {
-	color: #DEB7B8;
-	letter-spacing: 2px;
-}
+/* 第三页 */#screen_three {background: #FDEBEB;}
 
-/* 第三页 */
-#screen_three {
-	background: #FDEBEB;
-}
+#birthday_end {position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);text-align: center;width: 90%;}
 
-#birthday_end {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	width: 90%;
-}
+.end_title {color: #787785;font-size: 42px;margin-bottom: 42px;font-weight: 100;}
 
-.end_title {
-	color: #787785;
-	font-size: 42px;
-	margin-bottom: 42px;
-	font-weight: 100;
-}
+.envelope {position: relative;width: 230px;height: 160px;border: none;background: transparent;cursor: pointer;animation: envelopeBounce 1.4s infinite;}
 
-.envelope {
-	position: relative;
-	width: 230px;
-	height: 160px;
-	border: none;
-	background: transparent;
-	cursor: pointer;
-	animation: envelopeBounce 1.4s infinite;
-}
+.envelope_body {position: absolute;left: 0;bottom: 0;width: 230px;height: 138px;background: #DEB7B8;border-radius: 18px;box-shadow: 0 16px 40px rgba(120, 119, 133, 0.28);}
 
-.envelope_body {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 230px;
-	height: 138px;
-	background: #DEB7B8;
-	border-radius: 18px;
-	box-shadow: 0 16px 40px rgba(120, 119, 133, 0.28);
-}
+.envelope_body::before {content: "";position: absolute;left: 0;bottom: 0;border-left: 115px solid #f3cdce;border-top: 76px solid transparent;border-bottom: 62px solid transparent;}
 
-.envelope_body::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	border-left: 115px solid #f3cdce;
-	border-top: 76px solid transparent;
-	border-bottom: 62px solid transparent;
-}
+.envelope_body::after {content: "";position: absolute;right: 0;bottom: 0;border-right: 115px solid #f3cdce;border-top: 76px solid transparent;border-bottom: 62px solid transparent;}
 
-.envelope_body::after {
-	content: "";
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	border-right: 115px solid #f3cdce;
-	border-top: 76px solid transparent;
-	border-bottom: 62px solid transparent;
-}
+.envelope_flap {position: absolute;left: 0;top: 0;width: 0;height: 0;border-left: 115px solid transparent;border-right: 115px solid transparent;border-top: 90px solid #c99a9c;z-index: 3;}
 
-.envelope_flap {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 0;
-	height: 0;
-	border-left: 115px solid transparent;
-	border-right: 115px solid transparent;
-	border-top: 90px solid #c99a9c;
-	z-index: 3;
-}
+.envelope_heart {position: absolute;left: 50%;top: 58%;transform: translate(-50%, -50%);font-size: 50px;color: white;z-index: 4;}
 
-.envelope_heart {
-	position: absolute;
-	left: 50%;
-	top: 58%;
-	transform: translate(-50%, -50%);
-	font-size: 50px;
-	color: white;
-	z-index: 4;
-}
+.tap_hint {color: #787785;font-size: 22px;margin-top: 24px;}
 
-.tap_hint {
-	color: #787785;
-	font-size: 22px;
-	margin-top: 24px;
-}
+/* 信件弹窗 */.letter_modal {display: flex;position: fixed;z-index: 999;left: 0;top: 0;width: 100%;height: 100%;background: rgba(120, 119, 133, 0.42);justify-content: center;align-items: center;
 
-/* 信件弹窗 */
-.letter_modal {
-	display: flex;
-	position: fixed;
-	z-index: 999;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(120, 119, 133, 0.42);
-	justify-content: center;
-	align-items: center;
-
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
-	transition: opacity 0.45s ease, visibility 0s linear 0.45s;
-}
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+transition: opacity 0.45s ease, visibility 0s linear 0.45s;
 
-.letter_modal.show {
-	opacity: 1;
-	visibility: visible;
-	pointer-events: auto;
-	transition: opacity 0.45s ease;
 }
 
-.letter_paper {
-	position: relative;
-	width: min(88vw, 780px);
-	max-height: 86vh;
-	overflow-y: auto;
-	background: #fffafa;
-	border-radius: 24px;
-	padding: 34px;
-	box-shadow: 0 30px 80px rgba(120, 119, 133, 0.4);
-
-	opacity: 0;
-	transform: translateY(35px) scale(0.72) rotateX(14deg);
-	transform-origin: center top;
-	transition:
-		opacity 0.35s ease,
-		transform 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-}
+.letter_modal.show {opacity: 1;visibility: visible;pointer-events: auto;transition: opacity 0.45s ease;}
 
-.letter_modal.show .letter_paper {
-	opacity: 1;
-	transform: translateY(0) scale(1) rotateX(0deg);
-}
+.letter_paper {position: relative;width: min(88vw, 780px);max-height: 86vh;overflow-y: auto;background: #fffafa;border-radius: 24px;padding: 34px;box-shadow: 0 30px 80px rgba(120, 119, 133, 0.4);
 
-.letter_image {
-	display: block;
-	width: 100%;
-	height: auto;
-	border-radius: 18px;
-}
+opacity: 0;
+transform: translateY(35px) scale(0.72) rotateX(14deg);
+transform-origin: center top;
+transition:
+	opacity 0.35s ease,
+	transform 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 
-.close_letter {
-	position: absolute;
-	top: 10px;
-	right: 18px;
-	border: none;
-	background: rgba(255,255,255,0.75);
-	color: #787785;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	font-size: 32px;
-	line-height: 36px;
-	cursor: pointer;
-	z-index: 2;
 }
 
-/* 右下角翻页按钮 */
-.page_nav {
-	position: fixed;
-	right: 24px;
-	bottom: 24px;
-	z-index: 800;
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
+.letter_modal.show .letter_paper {opacity: 1;transform: translateY(0) scale(1) rotateX(0deg);}
 
-.page_nav button {
-	border: none;
-	background: #DEB7B8;
-	color: #787785;
-	border-radius: 999px;
-	padding: 12px 18px;
-	font-size: 16px;
-	cursor: pointer;
-	font-family: Helvetica, Arial, sans-serif;
-	font-weight: bold;
-	box-shadow: 0 10px 28px rgba(120, 119, 133, 0.24);
-}
+.letter_image {display: block;width: 100%;height: auto;border-radius: 18px;}
 
-.page_nav button:hover {
-	transform: translateY(-2px);
-}
+.close_letter {position: absolute;top: 10px;right: 18px;border: none;background: rgba(255,255,255,0.75);color: #787785;width: 40px;height: 40px;border-radius: 50%;font-size: 32px;line-height: 36px;cursor: pointer;z-index: 2;}
 
-/* 隐藏原作者广告和分享 */
-#bottom,
-#support,
-#share,
-#end_container {
-	display: none !important;
-}
+/* 右下角翻页按钮 */.page_nav {position: fixed;right: 24px;bottom: 24px;z-index: 800;display: flex;align-items: center;gap: 10px;}
 
-/* loading */
-#loading {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #FDEBEB;
-	color: #787785;
-	font-size: 30px;
-	letter-spacing: 5px;
-	text-align: center;
-	z-index: 1000;
-}
+.page_nav button {border: none;background: #DEB7B8;color: #787785;border-radius: 999px;padding: 12px 18px;font-size: 16px;cursor: pointer;font-family: Helvetica, Arial, sans-serif;font-weight: bold;box-shadow: 0 10px 28px rgba(120, 119, 133, 0.24);}
 
-#loading > div {
-	position: absolute;
-	margin: auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	height: 50px;
-}
+.page_nav button {transform: translateY(-2px);}
 
-@keyframes heartbeat {
-	0%, 100% {
-		transform: scale(1);
-	}
-	30% {
-		transform: scale(1.16);
-	}
-	60% {
-		transform: scale(0.96);
-	}
-}
+/* 隐藏原作者广告和分享 */#bottom,#support,#share,#end_container {display: none !important;}
 
-@keyframes envelopeBounce {
-	0%, 100% {
-		transform: translateY(0);
-	}
-	50% {
-		transform: translateY(-18px);
-	}
-}
-.birthday_words h1 {
-	text-transform: none !important;
-}
-.birthday_words,
-.birthday_words h1,
-.birthday_words p,
-.birthday_heart {
-	color: #DEB7B8 !important;
-}
-#screen_three {
-	background: #FDEBEB !important;
-	background-color: #FDEBEB !important;
-	background-image: none !important;
-}
-/* letter opening animation - final override */
-#letterModal.letter_modal {
-	display: flex !important;
-	position: fixed;
-	z-index: 999;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(120, 119, 133, 0.42);
-	justify-content: center;
-	align-items: center;
-
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
-	transition: opacity 0.45s ease, visibility 0s linear 0.45s;
-}
+/* loading */#loading {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: #FDEBEB;color: #787785;font-size: 30px;letter-spacing: 5px;text-align: center;z-index: 1000;}
 
-#letterModal.letter_modal.show {
-	opacity: 1;
-	visibility: visible;
-	pointer-events: auto;
-	transition: opacity 0.45s ease;
-}
+#loading > div {position: absolute;margin: auto;top: 0;left: 0;right: 0;bottom: 0;width: 100%;height: 50px;}
 
-#letterModal .letter_paper {
-	opacity: 0;
-	transform: translateY(50px) scale(0.65);
-	transform-origin: center center;
-	transition: opacity 0.35s ease, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-}
+@keyframes heartbeat {0%, 100% {transform: scale(1);}30% {transform: scale(1.16);}60% {transform: scale(0.96);}}
 
-#letterModal.show .letter_paper {
-	opacity: 1;
-	transform: translateY(0) scale(1);
-}
-/* cute handwritten Chinese font */
-@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
-
-/* letter opening animation - envelope + unfolding paper */
-#letterModal.letter_modal {
-	display: flex !important;
-	position: fixed;
-	z-index: 999;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(120, 119, 133, 0.42);
-	justify-content: center;
-	align-items: center;
-
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
-	transition: opacity 0.5s ease, visibility 0s linear 0.5s;
-}
+@keyframes envelopeBounce {0%, 100% {transform: translateY(0);}50% {transform: translateY(-18px);}}.birthday_words h1 {text-transform: none !important;}.birthday_words,.birthday_words h1,.birthday_words p,.birthday_heart {color: #DEB7B8 !important;}#screen_three {background: #FDEBEB !important;background-color: #FDEBEB !important;background-image: none !important;}/* letter opening animation - final override */#letterModal.letter_modal {display: flex !important;position: fixed;z-index: 999;left: 0;top: 0;width: 100%;height: 100%;background: rgba(120, 119, 133, 0.42);justify-content: center;align-items: center;
 
-#letterModal.letter_modal.show {
-	opacity: 1;
-	visibility: visible;
-	pointer-events: auto;
-	transition: opacity 0.5s ease;
-}
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+transition: opacity 0.45s ease, visibility 0s linear 0.45s;
 
-#letterModal .letter_scene {
-	position: relative;
-	width: min(90vw, 780px);
-	height: min(86vh, 680px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	perspective: 1000px;
 }
 
-#letterModal .modal_envelope {
-	position: absolute;
-	left: 50%;
-	bottom: 24px;
-	width: 260px;
-	height: 170px;
-	transform: translateX(-50%) translateY(35px);
-	opacity: 0;
-	z-index: 1;
-	transition: opacity 0.4s ease, transform 0.6s ease;
-}
+#letterModal.letter_modal.show {opacity: 1;visibility: visible;pointer-events: auto;transition: opacity 0.45s ease;}
 
-#letterModal.show .modal_envelope {
-	opacity: 1;
-	transform: translateX(-50%) translateY(0);
-}
+#letterModal .letter_paper {opacity: 0;transform: translateY(50px) scale(0.65);transform-origin: center center;transition: opacity 0.35s ease, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28);}
 
-#letterModal .modal_envelope_body {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 260px;
-	height: 150px;
-	background: #DEB7B8;
-	border-radius: 18px;
-	box-shadow: 0 16px 40px rgba(120, 119, 133, 0.28);
-}
+#letterModal.show .letter_paper {opacity: 1;transform: translateY(0) scale(1);}/* cute handwritten Chinese font */@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 
-#letterModal .modal_envelope_body::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	border-left: 130px solid #f1cdce;
-	border-top: 82px solid transparent;
-	border-bottom: 68px solid transparent;
-}
+/* letter opening animation - envelope + unfolding paper */#letterModal.letter_modal {display: flex !important;position: fixed;z-index: 999;left: 0;top: 0;width: 100%;height: 100%;background: rgba(120, 119, 133, 0.42);justify-content: center;align-items: center;
 
-#letterModal .modal_envelope_body::after {
-	content: "";
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	border-right: 130px solid #f1cdce;
-	border-top: 82px solid transparent;
-	border-bottom: 68px solid transparent;
-}
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+transition: opacity 0.5s ease, visibility 0s linear 0.5s;
 
-#letterModal .modal_envelope_flap {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 0;
-	height: 0;
-	border-left: 130px solid transparent;
-	border-right: 130px solid transparent;
-	border-top: 95px solid #c99a9c;
-	z-index: 3;
-	transform-origin: top center;
 }
 
-#letterModal.show .modal_envelope_flap {
-	animation: modalFlapOpen 0.6s ease forwards;
-}
+#letterModal.letter_modal.show {opacity: 1;visibility: visible;pointer-events: auto;transition: opacity 0.5s ease;}
 
-#letterModal .modal_envelope_heart {
-	position: absolute;
-	left: 50%;
-	top: 58%;
-	transform: translate(-50%, -50%);
-	font-size: 52px;
-	color: white;
-	z-index: 4;
-}
+#letterModal .letter_scene {position: relative;width: min(90vw, 780px);height: min(86vh, 680px);display: flex;justify-content: center;align-items: center;perspective: 1000px;}
 
-#letterModal .letter_paper {
-	position: relative;
-	z-index: 2;
-	width: min(88vw, 760px);
-	max-height: 82vh;
-	overflow-y: auto;
-	background: #fffafa;
-	border-radius: 24px;
-	padding: 34px 36px;
-	box-shadow: 0 30px 80px rgba(120, 119, 133, 0.4);
-
-	opacity: 0;
-	transform: translateY(150px) scaleX(0.72) scaleY(0.12);
-	transform-origin: bottom center;
-	clip-path: inset(80% 8% 0 8% round 22px);
-}
+#letterModal .modal_envelope {position: absolute;left: 50%;bottom: 24px;width: 260px;height: 170px;transform: translateX(-50%) translateY(35px);opacity: 0;z-index: 1;transition: opacity 0.4s ease, transform 0.6s ease;}
 
-#letterModal.show .letter_paper {
-	animation: paperComeOut 1s cubic-bezier(0.18, 0.89, 0.32, 1.18) forwards;
-	animation-delay: 0.25s;
-}
+#letterModal.show .modal_envelope {opacity: 1;transform: translateX(-50%) translateY(0);}
 
-#letterModal .typed_letter {
-	white-space: pre-wrap;
-	color: #787785;
-	font-size: 20px;
-	line-height: 1.75;
-	letter-spacing: 0.03em;
-	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
-	text-align: left;
-}
+#letterModal .modal_envelope_body {position: absolute;left: 0;bottom: 0;width: 260px;height: 150px;background: #DEB7B8;border-radius: 18px;box-shadow: 0 16px 40px rgba(120, 119, 133, 0.28);}
 
-#letterModal .typed_letter::after {
-	content: "|";
-	display: inline-block;
-	margin-left: 4px;
-	color: #DEB7B8;
-	animation: cursorBlink 0.8s infinite;
-}
+#letterModal .modal_envelope_body::before {content: "";position: absolute;left: 0;bottom: 0;border-left: 130px solid #f1cdce;border-top: 82px solid transparent;border-bottom: 68px solid transparent;}
 
-#letterModal .close_letter {
-	position: absolute;
-	top: 12px;
-	right: 18px;
-	border: none;
-	background: rgba(255, 255, 255, 0.75);
-	color: #787785;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	font-size: 32px;
-	line-height: 36px;
-	cursor: pointer;
-	z-index: 5;
-}
+#letterModal .modal_envelope_body::after {content: "";position: absolute;right: 0;bottom: 0;border-right: 130px solid #f1cdce;border-top: 82px solid transparent;border-bottom: 68px solid transparent;}
 
-@keyframes modalFlapOpen {
-	0% {
-		transform: rotateX(0deg);
-	}
-	100% {
-		transform: rotateX(145deg);
-	}
-}
+#letterModal .modal_envelope_flap {position: absolute;left: 0;top: 0;width: 0;height: 0;border-left: 130px solid transparent;border-right: 130px solid transparent;border-top: 95px solid #c99a9c;z-index: 3;transform-origin: top center;}
 
-@keyframes paperComeOut {
-	0% {
-		opacity: 0;
-		transform: translateY(150px) scaleX(0.72) scaleY(0.12);
-		clip-path: inset(80% 8% 0 8% round 22px);
-	}
-	55% {
-		opacity: 1;
-		transform: translateY(-60px) scaleX(0.9) scaleY(0.62);
-		clip-path: inset(36% 4% 0 4% round 22px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0) scaleX(1) scaleY(1);
-		clip-path: inset(0 0 0 0 round 24px);
-	}
-}
+#letterModal.show .modal_envelope_flap {animation: modalFlapOpen 0.6s ease forwards;}
 
-@keyframes cursorBlink {
-	0%, 45% {
-		opacity: 1;
-	}
-	46%, 100% {
-		opacity: 0;
-	}
-}
-@font-face {
-	font-family: "RoundPix";
-	src: url("../assets/ZLabsRoundPix_16px_M_CN.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-}
+#letterModal .modal_envelope_heart {position: absolute;left: 50%;top: 58%;transform: translate(-50%, -50%);font-size: 52px;color: white;z-index: 4;}
 
-/* Apply RoundPix font to the whole website */
-body,
-body *,
-button,
-input,
-textarea {
-	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
-}
-/* Clean side peeps: position + dance animation */
-#letterModal .side_peep {
-	position: fixed !important;
-	top: 50% !important;
-	width: 82px !important;
-	height: auto !important;
-	z-index: 50 !important;
-	opacity: 0 !important;
-	pointer-events: none !important;
-	transform-origin: bottom center !important;
-	filter: drop-shadow(0 10px 14px rgba(120, 119, 133, 0.22)) !important;
-}
+#letterModal .letter_paper {position: relative;z-index: 2;width: min(88vw, 760px);max-height: 82vh;overflow-y: auto;background: #fffafa;border-radius: 24px;padding: 34px 36px;box-shadow: 0 30px 80px rgba(120, 119, 133, 0.4);
 
-/* 左右位置：离信远一点，不挤压信纸 */
-#letterModal .side_peep_left {
-	left: 6vw !important;
-	right: auto !important;
-	transform: translateY(-50%) scaleX(-1) rotate(-4deg) !important;
-}
+opacity: 0;
+transform: translateY(150px) scaleX(0.72) scaleY(0.12);
+transform-origin: bottom center;
+clip-path: inset(80% 8% 0 8% round 22px);
 
-#letterModal .side_peep_right {
-	right: 6vw !important;
-	left: auto !important;
-	transform: translateY(-50%) rotate(4deg) !important;
 }
 
-/* 弹窗打开后才显示和跳舞 */
-#letterModal.show .side_peep_left {
-	opacity: 0.86 !important;
-	animation: sidePeepLeftDanceClean 0.85s ease-in-out infinite !important;
-}
+#letterModal.show .letter_paper {animation: paperComeOut 1s cubic-bezier(0.18, 0.89, 0.32, 1.18) forwards;animation-delay: 0.25s;}
 
-#letterModal.show .side_peep_right {
-	opacity: 0.86 !important;
-	animation: sidePeepRightDanceClean 0.85s ease-in-out infinite !important;
-}
+#letterModal .typed_letter {white-space: pre-wrap;color: #787785;font-size: 20px;line-height: 1.75;letter-spacing: 0.03em;font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;text-align: left;}
 
-/* 左边小人跳舞 */
-@keyframes sidePeepLeftDanceClean {
-	0%, 100% {
-		top: 50%;
-		transform: translateY(-50%) scaleX(-1) rotate(-5deg);
-	}
-	50% {
-		top: 44%;
-		transform: translateY(-50%) scaleX(-1) rotate(8deg);
-	}
-}
+#letterModal .typed_letter::after {content: "|";display: inline-block;margin-left: 4px;color: #DEB7B8;animation: cursorBlink 0.8s infinite;}
 
-/* 右边小人跳舞 */
-@keyframes sidePeepRightDanceClean {
-	0%, 100% {
-		top: 50%;
-		transform: translateY(-50%) rotate(5deg);
-	}
-	50% {
-		top: 44%;
-		transform: translateY(-50%) rotate(-8deg);
-	}
-}
+#letterModal .close_letter {position: absolute;top: 12px;right: 18px;border: none;background: rgba(255, 255, 255, 0.75);color: #787785;width: 40px;height: 40px;border-radius: 50%;font-size: 32px;line-height: 36px;cursor: pointer;z-index: 5;}
+
+@keyframes modalFlapOpen {0% {transform: rotateX(0deg);}100% {transform: rotateX(145deg);}}
+
+@keyframes paperComeOut {0% {opacity: 0;transform: translateY(150px) scaleX(0.72) scaleY(0.12);clip-path: inset(80% 8% 0 8% round 22px);}55% {opacity: 1;transform: translateY(-60px) scaleX(0.9) scaleY(0.62);clip-path: inset(36% 4% 0 4% round 22px);}100% {opacity: 1;transform: translateY(0) scaleX(1) scaleY(1);clip-path: inset(0 0 0 0 round 24px);}}
+
+@keyframes cursorBlink {0%, 45% {opacity: 1;}46%, 100% {opacity: 0;}}@font-face {font-family: "RoundPix";src: url("../assets/ZLabsRoundPix_16px_M_CN.ttf") format("truetype");font-weight: normal;font-style: normal;font-display: swap;}
 
-/* 小屏幕保护信纸，不显示两边小人 */
-@media (max-width: 980px) {
-	#letterModal .side_peep {
-		display: none !important;
-	}
+/* Apply RoundPix font to the whole website */body,body *,button,input,textarea {font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
 }
+																				 
