@@ -361,8 +361,3 @@ canvas {
 .birthday_heart {
 	color: #DEB7B8 !important;
 }
-#screen_two #canvas_1,
-#screen_two #canvas_2,
-#screen_two #canvas_3 {
-	background-color: #FFFFFF !important;
-}
