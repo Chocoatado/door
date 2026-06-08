@@ -90,24 +90,20 @@
 	</div>
 
 <div id="letterModal" class="letter_modal">
-<div class="letter_scene">
+	<div class="letter_scene">
 
-	<img class="letter_side_peep letter_side_peep_left" src="assets/peep.png" alt="cute peep left">
+		<div class="modal_envelope">
+			<div class="modal_envelope_flap"></div>
+			<div class="modal_envelope_body"></div>
+			<div class="modal_envelope_heart">♡</div>
+		</div>
 
-	<div class="modal_envelope">
-		<div class="modal_envelope_flap"></div>
-		<div class="modal_envelope_body"></div>
-		<div class="modal_envelope_heart">♡</div>
+		<div class="letter_paper">
+			<button id="closeLetter" class="close_letter" type="button">×</button>
+			<div id="typedLetter" class="typed_letter"></div>
+		</div>
+
 	</div>
-
-	<div class="letter_paper">
-		<button id="closeLetter" class="close_letter" type="button">×</button>
-		<div id="typedLetter" class="typed_letter"></div>
-	</div>
-
-	<img class="letter_side_peep letter_side_peep_right" src="assets/peep.png" alt="cute peep right">
-
-</div>
 </div>
 
 <script src="js/Key.js?v=1"></script>
@@ -165,11 +161,6 @@ function startTypingLetter() {
 	typeNextChar();
 }
 
-function showFullLetter() {
-	clearTimeout(typingTimer);
-	typedLetter.textContent = letterText;
-}
-
 envelopeBtn.addEventListener("click", function () {
 	letterModal.classList.add("show");
 
@@ -187,11 +178,6 @@ letterModal.addEventListener("click", function (event) {
 	if (event.target === letterModal) {
 		letterModal.classList.remove("show");
 		clearTimeout(typingTimer);
-	}
-});
-letterModal.addEventListener("dblclick", function () {
-	if (letterModal.classList.contains("show")) {
-		showFullLetter();
 	}
 });
 
