@@ -185,6 +185,11 @@ letterModal.addEventListener("click", function (event) {
 		clearTimeout(typingTimer);
 	}
 });
+letterModal.addEventListener("dblclick", function () {
+	if (letterModal.classList.contains("show")) {
+		showFullLetter();
+	}
+});
 
 			var currentPage = 1;
 			var totalPages = 3;
