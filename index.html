@@ -250,3 +250,55 @@ letterModal.addEventListener("dblclick", function () {
 
 </body>
 </html>
+/* FINAL: current letter side peeps - no squeezing + dance */
+#letterModal .letter_side_peep {
+	position: fixed !important;
+	top: 50% !important;
+	width: 82px !important;
+	height: auto !important;
+	z-index: 1002 !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+	transform-origin: bottom center !important;
+	filter: drop-shadow(0 10px 14px rgba(120, 119, 133, 0.22)) !important;
+}
+
+#letterModal .letter_side_peep_left {
+	left: 4vw !important;
+	right: auto !important;
+	transform: translateY(-50%) scaleX(-1) rotate(-4deg);
+}
+
+#letterModal .letter_side_peep_right {
+	right: 4vw !important;
+	left: auto !important;
+	transform: translateY(-50%) rotate(4deg);
+}
+
+#letterModal.show .letter_side_peep_left {
+	opacity: 0.86 !important;
+	animation: letterSidePeepLeftJump 0.8s ease-in-out infinite !important;
+}
+
+#letterModal.show .letter_side_peep_right {
+	opacity: 0.86 !important;
+	animation: letterSidePeepRightJump 0.8s ease-in-out infinite !important;
+}
+
+@keyframes letterSidePeepLeftJump {
+	0%, 100% {
+		transform: translateY(-50%) translateY(0) scaleX(-1) rotate(-5deg);
+	}
+	50% {
+		transform: translateY(-50%) translateY(-42px) scaleX(-1) rotate(8deg);
+	}
+}
+
+@keyframes letterSidePeepRightJump {
+	0%, 100% {
+		transform: translateY(-50%) translateY(0) rotate(5deg);
+	}
+	50% {
+		transform: translateY(-50%) translateY(-42px) rotate(-8deg);
+	}
+}
