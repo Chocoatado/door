@@ -93,10 +93,10 @@ function Level(config,isIntro){
 			ctx.clearRect(self.player.x-100,self.player.y-100,200,200);
 			ctx.clearRect(self.key.x-100,self.key.y-100,200,200);
 			ctx.clearRect(self.door.x-100,self.door.y-100,200,200);
-}else{
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0,0,self.width,self.height);
-}
+		}else{
+			ctx.fillStyle = "#787785";
+			ctx.fillRect(0,0,self.width,self.height);
+		}
 
 		// Draw shadows
 		var objects = [self.player,self.key,self.door];
@@ -747,7 +747,7 @@ function iHeartYou(){
 	if(window.location.hash){
 		vtext.textContent = encryptString(decodeURIComponent(window.location.hash).substring(1));
 	}else{
-		vtext.textContent = "叮咚！分享的潜台词是love~";
+		vtext.textContent = "a lovely message from me to you <3";
 	}
 
 	setTimeout(function(){
@@ -939,4 +939,3 @@ window.LEVEL_CONFIG = [
 	}
 
 ];
-
