@@ -644,3 +644,22 @@ input,
 textarea {
 	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
 }
+/* Long letter layout - final */
+#letterModal .letter_paper {
+	width: min(90vw, 820px) !important;
+	max-height: 84vh !important;
+	padding: 38px 44px !important;
+	border-radius: 26px !important;
+}
+
+#letterModal .typed_letter {
+	font-size: 17px !important;
+	line-height: 2 !important;
+	letter-spacing: 0.025em !important;
+	color: #6f6d7a !important;
+	text-align: left !important;
+}
+
+#letterModal .typed_letter::after {
+	color: #DEB7B8 !important;
+}
