@@ -677,12 +677,12 @@ textarea {
 
 /* Farther away from the letter */
 #letterModal .side_peep_left {
-	left: calc(50% - 520px);
+	left: calc(50% - 580px);
 	transform: translateY(-50%) scaleX(-1);
 }
 
 #letterModal .side_peep_right {
-	right: calc(50% - 520px);
+	right: calc(50% - 580px);
 	transform: translateY(-50%);
 }
 
