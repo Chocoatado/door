@@ -562,10 +562,10 @@ canvas {
 #letterModal .typed_letter {
 	white-space: pre-wrap;
 	color: #787785;
-	font-size: 27px;
-	line-height: 1.9;
-	letter-spacing: 0.04em;
-	font-family: "ZCOOL KuaiLe", "HanziPen SC", "LXGW WenKai", "Kaiti SC", "STKaiti", cursive;
+	font-size: 20px;
+	line-height: 1.75;
+	letter-spacing: 0.03em;
+	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
 	text-align: left;
 }
 
