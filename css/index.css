@@ -644,3 +644,65 @@ input,
 textarea {
 	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
 }
+/* Letter page side peeps - clean version */
+#letterPeepLeft,
+#letterPeepRight {
+	position: fixed !important;
+	top: 50vh !important;
+	width: 78px !important;
+	height: auto !important;
+	z-index: 1002 !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+	transform-origin: bottom center !important;
+	filter: drop-shadow(0 10px 14px rgba(120, 119, 133, 0.22)) !important;
+}
+
+/* 左小人：左侧三分区域中心 */
+#letterPeepLeft {
+	left: 16.666vw !important;
+	transform: translate(-50%, -50%) scaleX(-1) rotate(-4deg);
+}
+
+/* 右小人：右侧三分区域中心 */
+#letterPeepRight {
+	left: 83.333vw !important;
+	transform: translate(-50%, -50%) rotate(4deg);
+}
+
+/* 打开信后，小人出现并跳跃 */
+#letterModal.show #letterPeepLeft {
+	opacity: 0.86 !important;
+	animation: letterPeepLeftBounce 0.85s ease-in-out infinite !important;
+}
+
+#letterModal.show #letterPeepRight {
+	opacity: 0.86 !important;
+	animation: letterPeepRightBounce 0.85s ease-in-out infinite !important;
+}
+
+@keyframes letterPeepLeftBounce {
+	0%, 100% {
+		transform: translate(-50%, -50%) translateY(0) scaleX(-1) rotate(-5deg);
+	}
+	50% {
+		transform: translate(-50%, -50%) translateY(-42px) scaleX(-1) rotate(8deg);
+	}
+}
+
+@keyframes letterPeepRightBounce {
+	0%, 100% {
+		transform: translate(-50%, -50%) translateY(0) rotate(5deg);
+	}
+	50% {
+		transform: translate(-50%, -50%) translateY(-42px) rotate(-8deg);
+	}
+}
+
+/* 小屏幕时隐藏小人，保护信纸 */
+@media (max-width: 1050px) {
+	#letterPeepLeft,
+	#letterPeepRight {
+		display: none !important;
+	}
+}
