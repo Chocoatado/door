@@ -544,7 +544,7 @@ function Peep(config,level){
 		ctx.scale(self.direction,1);///anim.stretch, anim.stretch);
 		ctx.scale(1/self.bounce, self.bounce);
 		//ctx.rotate(anim.rotate*0.15);
-		ctx.drawImage(images.peep,-25,-100,50,100);
+		ctx.drawImage(images.peep,-30,-120,60,120);
 		ctx.restore();
 
 	};
