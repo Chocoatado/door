@@ -649,7 +649,7 @@ textarea {
 #letterPeepRight {
 	position: fixed !important;
 	top: 50vh !important;
-	width: 78px !important;
+	width: 105px !important;
 	height: auto !important;
 	z-index: 1002 !important;
 	opacity: 0 !important;
@@ -683,19 +683,31 @@ textarea {
 
 @keyframes letterPeepLeftBounce {
 	0%, 100% {
-		transform: translate(-50%, -50%) translateY(0) scaleX(-1) rotate(-5deg);
+		transform: translate(-50%, -50%) scaleX(-1) rotate(-8deg);
+	}
+	25% {
+		transform: translate(-50%, -50%) scaleX(-1) rotate(10deg);
 	}
 	50% {
-		transform: translate(-50%, -50%) translateY(-42px) scaleX(-1) rotate(8deg);
+		transform: translate(-50%, -50%) scaleX(-1) rotate(-6deg);
+	}
+	75% {
+		transform: translate(-50%, -50%) scaleX(-1) rotate(8deg);
 	}
 }
 
 @keyframes letterPeepRightBounce {
 	0%, 100% {
-		transform: translate(-50%, -50%) translateY(0) rotate(5deg);
+		transform: translate(-50%, -50%) rotate(8deg);
+	}
+	25% {
+		transform: translate(-50%, -50%) rotate(-10deg);
 	}
 	50% {
-		transform: translate(-50%, -50%) translateY(-42px) rotate(-8deg);
+		transform: translate(-50%, -50%) rotate(6deg);
+	}
+	75% {
+		transform: translate(-50%, -50%) rotate(-8deg);
 	}
 }
 
