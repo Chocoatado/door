@@ -774,3 +774,90 @@ textarea {
 		transform: translateY(-68%) rotate(7deg);
 	}
 }
+/* Force only letter-side peeps to dance */
+#letterModal .side_peep_left {
+	animation: forcePeepLeftDance 0.8s ease-in-out infinite !important;
+}
+
+#letterModal .side_peep_right {
+	animation: forcePeepRightDance 0.8s ease-in-out infinite !important;
+}
+
+@keyframes forcePeepLeftDance {
+	0%, 100% {
+		margin-top: 0;
+		transform: translateY(-50%) scaleX(-1) rotate(-5deg);
+	}
+	50% {
+		margin-top: -45px;
+		transform: translateY(-50%) scaleX(-1) rotate(8deg);
+	}
+}
+
+@keyframes forcePeepRightDance {
+	0%, 100% {
+		margin-top: 0;
+		transform: translateY(-50%) rotate(5deg);
+	}
+	50% {
+		margin-top: -45px;
+		transform: translateY(-50%) rotate(-8deg);
+	}
+}
+/* FINAL: side peeps position + dance animation */
+#letterModal .side_peep {
+	position: fixed !important;
+	top: 50% !important;
+	width: 86px !important;
+	height: auto !important;
+	z-index: 2 !important;
+	opacity: 0.85 !important;
+	pointer-events: none !important;
+	transform-origin: bottom center !important;
+	filter: drop-shadow(0 10px 14px rgba(120, 119, 133, 0.22));
+}
+
+/* 离信更远 */
+#letterModal .side_peep_left {
+	left: calc(50% - 720px) !important;
+	right: auto !important;
+	animation: letterPeepLeftDance 0.9s ease-in-out infinite !important;
+}
+
+#letterModal .side_peep_right {
+	right: calc(50% - 720px) !important;
+	left: auto !important;
+	animation: letterPeepRightDance 0.9s ease-in-out infinite !important;
+}
+
+/* 左边小人跳舞 */
+@keyframes letterPeepLeftDance {
+	0%, 100% {
+		transform: translateY(-50%) scaleX(-1) rotate(-4deg);
+	}
+	25% {
+		transform: translateY(-78%) scaleX(-1) rotate(7deg);
+	}
+	50% {
+		transform: translateY(-50%) scaleX(-1) rotate(3deg);
+	}
+	75% {
+		transform: translateY(-68%) scaleX(-1) rotate(-7deg);
+	}
+}
+
+/* 右边小人跳舞 */
+@keyframes letterPeepRightDance {
+	0%, 100% {
+		transform: translateY(-50%) rotate(4deg);
+	}
+	25% {
+		transform: translateY(-78%) rotate(-7deg);
+	}
+	50% {
+		transform: translateY(-50%) rotate(-3deg);
+	}
+	75% {
+		transform: translateY(-68%) rotate(7deg);
+	}
+}
