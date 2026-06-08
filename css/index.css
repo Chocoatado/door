@@ -386,3 +386,40 @@ canvas {
 	background-color: #FDEBEB !important;
 	background-image: none !important;
 }
+/* letter opening animation - final override */
+#letterModal.letter_modal {
+	display: flex !important;
+	position: fixed;
+	z-index: 999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(120, 119, 133, 0.42);
+	justify-content: center;
+	align-items: center;
+
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+}
+
+#letterModal.letter_modal.show {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition: opacity 0.45s ease;
+}
+
+#letterModal .letter_paper {
+	opacity: 0;
+	transform: translateY(50px) scale(0.65);
+	transform-origin: center center;
+	transition: opacity 0.35s ease, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+#letterModal.show .letter_paper {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
