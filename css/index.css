@@ -628,3 +628,19 @@ canvas {
 		opacity: 0;
 	}
 }
+@font-face {
+	font-family: "RoundPix";
+	src: url("../assets/ZLabsRoundPix_16px_M_CN.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Apply RoundPix font to the whole website */
+body,
+body *,
+button,
+input,
+textarea {
+	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
+}
