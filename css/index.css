@@ -130,7 +130,7 @@ canvas {
 
 /* 第三页 */
 #screen_three {
-	background: #FEBEBE;
+	background: #FDEBEB;
 }
 
 #birthday_end {
@@ -360,4 +360,9 @@ canvas {
 .birthday_words p,
 .birthday_heart {
 	color: #DEB7B8 !important;
+}
+#screen_three {
+	background: #FDEBEB !important;
+	background-color: #FDEBEB !important;
+	background-image: none !important;
 }
