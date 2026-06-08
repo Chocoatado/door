@@ -161,6 +161,11 @@ function startTypingLetter() {
 	typeNextChar();
 }
 
+function showFullLetter() {
+	clearTimeout(typingTimer);
+	typedLetter.textContent = letterText;
+}
+
 envelopeBtn.addEventListener("click", function () {
 	letterModal.classList.add("show");
 
@@ -178,6 +183,11 @@ letterModal.addEventListener("click", function (event) {
 	if (event.target === letterModal) {
 		letterModal.classList.remove("show");
 		clearTimeout(typingTimer);
+	}
+});
+letterModal.addEventListener("dblclick", function () {
+	if (letterModal.classList.contains("show")) {
+		showFullLetter();
 	}
 });
 
