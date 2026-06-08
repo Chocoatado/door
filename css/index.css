@@ -649,7 +649,7 @@ textarea {
 #letterPeepRight {
 	position: fixed !important;
 	top: 50vh !important;
-	width: 305px !important;
+	width: 280px !important;
 	height: auto !important;
 	z-index: 1002 !important;
 	opacity: 0 !important;
@@ -673,12 +673,12 @@ textarea {
 /* 打开信后，小人出现并跳跃 */
 #letterModal.show #letterPeepLeft {
 	opacity: 0.86 !important;
-	animation: letterPeepLeftBounce 1.15s ease-in-out infinite !important;
+	animation: letterPeepLeftBounce 2.0s ease-in-out infinite !important;
 }
 
 #letterModal.show #letterPeepRight {
 	opacity: 0.86 !important;
-	animation: letterPeepRightBounce 1.15s ease-in-out infinite !important;
+	animation: letterPeepRightBounce 2.0s ease-in-out infinite !important;
 }
 
 @keyframes letterPeepLeftBounce {
