@@ -161,6 +161,11 @@ function startTypingLetter() {
 	typeNextChar();
 }
 
+function showFullLetter() {
+	clearTimeout(typingTimer);
+	typedLetter.textContent = letterText;
+}
+
 envelopeBtn.addEventListener("click", function () {
 	letterModal.classList.add("show");
 
