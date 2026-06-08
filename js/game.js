@@ -324,7 +324,7 @@ function DoorKey(config,level){
 		ctx.save();
 		ctx.translate(self.x, self.y-20-Math.sin(self.hover)*5);
 		ctx.scale(0.7,0.7);
-		ctx.drawImage(images.key,-23,-14,47,28);
+		ctx.drawImage(images.key,-35,-21,70,42);
 		ctx.restore();
 
 	};
