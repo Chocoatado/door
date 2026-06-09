@@ -718,3 +718,23 @@ textarea {
 		display: none !important;
 	}
 }
+/* Full screen finale animation */
+#finaleOverlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2000;
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+	background: transparent;
+	transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+}
+
+#finaleOverlay.show {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.6s ease;
+}
