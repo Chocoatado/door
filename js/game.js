@@ -518,11 +518,19 @@ function Peep(config,level){
 
 	};
 
-	self.bounce = 1;
-	var bounceVel = 0;
-	self.sway = 0;
-	var swayVel = 0;
-	var bouncy = [0.00, 0.25, 1.00, 0.90, 0.00, 0.00, 0.25, 1.00, 0.90, 0.00];
+self.bounce = 1;
+var bounceVel = 0;
+self.sway = 0;
+var swayVel = 0;
+
+self.cuteSway = function(){
+	self.frame = 0;
+	self.bounce = 0.8;
+	bounceVel = 0.12;
+	swayVel = 0.55 * self.direction;
+};
+
+var bouncy = [0.00, 0.25, 1.00, 0.90, 0.00, 0.00, 0.25, 1.00, 0.90, 0.00];
 	self.draw = function(ctx){
 		
 		var x = self.x;
