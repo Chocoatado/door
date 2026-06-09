@@ -191,6 +191,8 @@ function fadeBgmVolume(targetVolume, duration) {
 }
 
 envelopeBtn.addEventListener("click", function () {
+	resetCloseButton();
+
 	letterModal.classList.add("show");
 
 	// 打开信时，背景音乐慢慢降低
@@ -201,21 +203,62 @@ envelopeBtn.addEventListener("click", function () {
 	}, 1000);
 });
 
-closeLetter.addEventListener("click", function () {
+var closeClickCount = 0;
+
+function resetCloseButton() {
+	closeClickCount = 0;
+	closeLetter.classList.remove("is-running");
+	closeLetter.style.position = "";
+	closeLetter.style.left = "";
+	closeLetter.style.top = "";
+	closeLetter.style.right = "";
+	closeLetter.style.transform = "";
+	closeLetter.textContent = "×";
+}
+
+function closeLetterNow() {
 	letterModal.classList.remove("show");
 	clearTimeout(typingTimer);
-
-	// 关掉信后，音乐稍微恢复
 	fadeBgmVolume(0.16, 1200);
+	resetCloseButton();
+}
+
+function moveCloseButtonAway() {
+	var buttonSize = 64;
+	var padding = 30;
+
+	var maxLeft = window.innerWidth - buttonSize - padding;
+	var maxTop = window.innerHeight - buttonSize - padding;
+
+	var randomLeft = padding + Math.random() * (maxLeft - padding);
+	var randomTop = padding + Math.random() * (maxTop - padding);
+
+	closeLetter.style.position = "fixed";
+	closeLetter.style.left = randomLeft + "px";
+	closeLetter.style.top = randomTop + "px";
+	closeLetter.style.right = "auto";
+	closeLetter.style.transform = "rotate(" + (Math.random() * 28 - 14) + "deg)";
+	closeLetter.classList.add("is-running");
+}
+
+closeLetter.addEventListener("click", function (event) {
+	event.preventDefault();
+	event.stopPropagation();
+
+	closeClickCount++;
+
+	if (closeClickCount < 3) {
+		closeLetter.textContent = closeClickCount === 1 ? "嘿" : "再点";
+		moveCloseButtonAway();
+		return;
+	}
+
+	closeLetterNow();
 });
 
 letterModal.addEventListener("click", function (event) {
 	if (event.target === letterModal) {
-		letterModal.classList.remove("show");
-		clearTimeout(typingTimer);
-
-		// 点背景关掉信后，音乐稍微恢复
-		fadeBgmVolume(0.16, 1200);
+		closeLetterNow();
 	}
 });
 letterModal.addEventListener("dblclick", function () {
