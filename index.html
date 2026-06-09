@@ -277,35 +277,53 @@ function restartFirstPageGame() {
 	}
 }
 
-function goToPage(pageNumber) {
-				if (pageNumber < 1) {
-					pageNumber = 1;
-				}
+function updatePageButtons() {
+	if (currentPage === 1) {
+		prevPage.style.display = "none";
+	} else {
+		prevPage.style.display = "inline-block";
+	}
 
-				if (pageNumber > totalPages) {
-					pageNumber = totalPages;
-				}
-
-currentPage = pageNumber;
-
-if (currentPage === 1) {
-	restartFirstPageGame();
+	if (currentPage === 3) {
+		nextPage.style.display = "none";
+	} else {
+		nextPage.style.display = "inline-block";
+	}
 }
 
-wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
+function syncCurrentPageFromPosition() {
+	var topValue = wholeContainer.style.top || "0px";
 
-				if (currentPage === 1) {
-					prevPage.style.display = "none";
-				} else {
-					prevPage.style.display = "inline-block";
-				}
+	if (topValue.indexOf("-200") !== -1) {
+		currentPage = 3;
+	} else if (topValue.indexOf("-100") !== -1) {
+		currentPage = 2;
+	} else {
+		currentPage = 1;
+	}
 
-				if (currentPage === 3) {
-					nextPage.style.display = "none";
-				} else {
-					nextPage.style.display = "inline-block";
-				}
-			}
+	updatePageButtons();
+}
+
+function goToPage(pageNumber) {
+	if (pageNumber < 1) {
+		pageNumber = 1;
+	}
+
+	if (pageNumber > totalPages) {
+		pageNumber = totalPages;
+	}
+
+	currentPage = pageNumber;
+
+	if (currentPage === 1) {
+		restartFirstPageGame();
+	}
+
+	wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
+
+	updatePageButtons();
+}
 
 			prevPage.addEventListener("click", function () {
 				goToPage(currentPage - 1);
@@ -324,6 +342,10 @@ wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
 					goToPage(currentPage + 1);
 				}
 			});
+
+			setInterval(function () {
+				syncCurrentPageFromPosition();
+			}, 300);
 
 			goToPage(1);
 		});
