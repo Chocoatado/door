@@ -191,8 +191,6 @@ function fadeBgmVolume(targetVolume, duration) {
 }
 
 envelopeBtn.addEventListener("click", function () {
-	resetCloseButton();
-
 	letterModal.classList.add("show");
 
 	// 打开信时，背景音乐慢慢降低
@@ -203,62 +201,21 @@ envelopeBtn.addEventListener("click", function () {
 	}, 1000);
 });
 
-var closeClickCount = 0;
-
-function resetCloseButton() {
-	closeClickCount = 0;
-	closeLetter.classList.remove("is-running");
-	closeLetter.style.position = "";
-	closeLetter.style.left = "";
-	closeLetter.style.top = "";
-	closeLetter.style.right = "";
-	closeLetter.style.transform = "";
-	closeLetter.textContent = "×";
-}
-
-function closeLetterNow() {
+closeLetter.addEventListener("click", function () {
 	letterModal.classList.remove("show");
 	clearTimeout(typingTimer);
+
+	// 关掉信后，音乐稍微恢复
 	fadeBgmVolume(0.16, 1200);
-	resetCloseButton();
-}
-
-function moveCloseButtonAway() {
-	var buttonSize = 64;
-	var padding = 30;
-
-	var maxLeft = window.innerWidth - buttonSize - padding;
-	var maxTop = window.innerHeight - buttonSize - padding;
-
-	var randomLeft = padding + Math.random() * (maxLeft - padding);
-	var randomTop = padding + Math.random() * (maxTop - padding);
-
-	closeLetter.style.position = "fixed";
-	closeLetter.style.left = randomLeft + "px";
-	closeLetter.style.top = randomTop + "px";
-	closeLetter.style.right = "auto";
-	closeLetter.style.transform = "rotate(" + (Math.random() * 28 - 14) + "deg)";
-	closeLetter.classList.add("is-running");
-}
-
-closeLetter.addEventListener("click", function (event) {
-	event.preventDefault();
-	event.stopPropagation();
-
-	closeClickCount++;
-
-	if (closeClickCount < 3) {
-		closeLetter.textContent = closeClickCount === 1 ? "嘿" : "再点";
-		moveCloseButtonAway();
-		return;
-	}
-
-	closeLetterNow();
 });
 
 letterModal.addEventListener("click", function (event) {
 	if (event.target === letterModal) {
-		closeLetterNow();
+		letterModal.classList.remove("show");
+		clearTimeout(typingTimer);
+
+		// 点背景关掉信后，音乐稍微恢复
+		fadeBgmVolume(0.16, 1200);
 	}
 });
 letterModal.addEventListener("dblclick", function () {
@@ -267,20 +224,13 @@ letterModal.addEventListener("dblclick", function () {
 	}
 });
 
-var currentPage = 1;
-var totalPages = 3;
-var wholeContainer = document.getElementById("whole_container");
-var prevPage = document.getElementById("prevPage");
-var nextPage = document.getElementById("nextPage");
+			var currentPage = 1;
+			var totalPages = 3;
+			var wholeContainer = document.getElementById("whole_container");
+			var prevPage = document.getElementById("prevPage");
+			var nextPage = document.getElementById("nextPage");
 
-function restartFirstPageGame() {
-	if (typeof Level === "function" && typeof INTRO_LEVEL !== "undefined") {
-		STAGE = 0;
-		window.level = new Level(window.INTRO_LEVEL, true);
-	}
-}
-
-	function goToPage(pageNumber) {
+			function goToPage(pageNumber) {
 				if (pageNumber < 1) {
 					pageNumber = 1;
 				}
@@ -289,13 +239,8 @@ function restartFirstPageGame() {
 					pageNumber = totalPages;
 				}
 
-currentPage = pageNumber;
-
-if (currentPage === 1) {
-	restartFirstPageGame();
-}
-
-wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
+				currentPage = pageNumber;
+				wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
 
 				if (currentPage === 1) {
 					prevPage.style.display = "none";
