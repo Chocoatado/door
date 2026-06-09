@@ -523,11 +523,24 @@ var bounceVel = 0;
 self.sway = 0;
 var swayVel = 0;
 
+self.usePeep2 = false;
+self.peep2Timer = null;
+
 self.cuteSway = function(){
 	self.frame = 0;
 	self.bounce = 0.8;
 	bounceVel = 0.12;
 	swayVel = 0.55 * self.direction;
+};
+
+self.showPeep2Once = function(){
+	self.usePeep2 = true;
+
+	clearTimeout(self.peep2Timer);
+
+	self.peep2Timer = setTimeout(function(){
+		self.usePeep2 = false;
+	}, 900);
 };
 
 var bouncy = [0.00, 0.25, 1.00, 0.90, 0.00, 0.00, 0.25, 1.00, 0.90, 0.00];
@@ -552,7 +565,13 @@ var bouncy = [0.00, 0.25, 1.00, 0.90, 0.00, 0.00, 0.25, 1.00, 0.90, 0.00];
 		ctx.scale(self.direction,1);///anim.stretch, anim.stretch);
 		ctx.scale(1/self.bounce, self.bounce);
 		//ctx.rotate(anim.rotate*0.15);
-	ctx.drawImage(images.peep,-50,-200,100,200);
+var peepImage = images.peep;
+
+if (self.usePeep2 && images.peep2) {
+	peepImage = images.peep2;
+}
+
+ctx.drawImage(peepImage,-50,-200,100,200);
 		ctx.restore();
 
 	};
