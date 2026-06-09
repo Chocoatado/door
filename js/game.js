@@ -591,6 +591,7 @@ window.onload = function(){
 	addAsset("key","assets/key.png");
 	addAsset("door","assets/door.png");
 	addAsset("clock","assets/clock.png");
+	addAsset("peep2","assets/peep2.png");
 
 	createjs.Sound.alternateExtensions = ["ogg"];
 	addSound("ding","audio/ding.mp3");
