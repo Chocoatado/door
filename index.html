@@ -168,8 +168,33 @@ function showFullLetter() {
 	typedLetter.textContent = letterText;
 }
 
+function fadeBgmVolume(targetVolume, duration) {
+	if (!window.BIRTHDAY_BGM) {
+		return;
+	}
+
+	var startVolume = window.BIRTHDAY_BGM.volume;
+	var startTime = Date.now();
+
+	function updateVolume() {
+		var elapsed = Date.now() - startTime;
+		var progress = Math.min(elapsed / duration, 1);
+
+		window.BIRTHDAY_BGM.volume = startVolume + (targetVolume - startVolume) * progress;
+
+		if (progress < 1) {
+			requestAnimationFrame(updateVolume);
+		}
+	}
+
+	updateVolume();
+}
+
 envelopeBtn.addEventListener("click", function () {
 	letterModal.classList.add("show");
+
+	// 打开信时，背景音乐慢慢降低
+	fadeBgmVolume(0.06, 1800);
 
 	setTimeout(function () {
 		startTypingLetter();
@@ -179,12 +204,18 @@ envelopeBtn.addEventListener("click", function () {
 closeLetter.addEventListener("click", function () {
 	letterModal.classList.remove("show");
 	clearTimeout(typingTimer);
+
+	// 关掉信后，音乐稍微恢复
+	fadeBgmVolume(0.16, 1200);
 });
 
 letterModal.addEventListener("click", function (event) {
 	if (event.target === letterModal) {
 		letterModal.classList.remove("show");
 		clearTimeout(typingTimer);
+
+		// 点背景关掉信后，音乐稍微恢复
+		fadeBgmVolume(0.16, 1200);
 	}
 });
 letterModal.addEventListener("dblclick", function () {
