@@ -718,3 +718,36 @@ textarea {
 		display: none !important;
 	}
 }
+
+/* Close button little prank */
+#letterModal .close_letter {
+	width: 44px !important;
+	height: 44px !important;
+	line-height: 40px !important;
+	transition: left 0.22s ease, top 0.22s ease, transform 0.22s ease, background 0.2s ease;
+}
+
+#letterModal .close_letter::before {
+	content: "";
+	position: absolute;
+	left: -8px;
+	right: -8px;
+	top: -8px;
+	bottom: -8px;
+	border-radius: 50%;
+}
+
+#letterModal .close_letter.is-running {
+	background: #DEB7B8 !important;
+	color: #787785 !important;
+	animation: closeButtonWiggle 0.32s ease-in-out infinite;
+}
+
+@keyframes closeButtonWiggle {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.12);
+	}
+}
