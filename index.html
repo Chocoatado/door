@@ -315,7 +315,18 @@ introCanvas.addEventListener("click", function (event) {
 
 function restartFirstPageGame() {
 	if (typeof Level === "function" && typeof INTRO_LEVEL !== "undefined") {
+
+		var introCanvas = document.getElementById("canvas_intro");
+		var introCtx = introCanvas.getContext("2d");
+
+		introCtx.clearRect(0, 0, introCanvas.width, introCanvas.height);
+
+		if (window.level && typeof window.level.clear === "function") {
+			window.level.clear();
+		}
+
 		STAGE = 0;
+		window.level = null;
 		window.level = new Level(window.INTRO_LEVEL, true);
 	}
 }
