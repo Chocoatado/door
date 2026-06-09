@@ -224,13 +224,20 @@ letterModal.addEventListener("dblclick", function () {
 	}
 });
 
-			var currentPage = 1;
-			var totalPages = 3;
-			var wholeContainer = document.getElementById("whole_container");
-			var prevPage = document.getElementById("prevPage");
-			var nextPage = document.getElementById("nextPage");
+var currentPage = 1;
+var totalPages = 3;
+var wholeContainer = document.getElementById("whole_container");
+var prevPage = document.getElementById("prevPage");
+var nextPage = document.getElementById("nextPage");
 
-			function goToPage(pageNumber) {
+function restartFirstPageGame() {
+	if (typeof Level === "function" && typeof INTRO_LEVEL !== "undefined") {
+		STAGE = 0;
+		window.level = new Level(window.INTRO_LEVEL, true);
+	}
+}
+
+function goToPage(pageNumber) {
 				if (pageNumber < 1) {
 					pageNumber = 1;
 				}
@@ -239,8 +246,13 @@ letterModal.addEventListener("dblclick", function () {
 					pageNumber = totalPages;
 				}
 
-				currentPage = pageNumber;
-				wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
+currentPage = pageNumber;
+
+if (currentPage === 1) {
+	restartFirstPageGame();
+}
+
+wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
 
 				if (currentPage === 1) {
 					prevPage.style.display = "none";
