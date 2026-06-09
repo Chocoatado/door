@@ -647,7 +647,7 @@ window.onload = function(){
 
 				if(STAGE==3 && CURRENT_LEVEL==1){
 					var framesLeft = (rewindLevel.frames.length-rewindFrame) + levelObjects[2].frames.length;
-if(framesLeft<135){
+if(framesLeft<500){
 	window.HAS_PLAYED_JAZZ = true;
 
 	if(!window.BIRTHDAY_BGM){
