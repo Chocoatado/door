@@ -129,6 +129,27 @@
 			var closeLetter = document.getElementById("closeLetter");
 			var typedLetter = document.getElementById("typedLetter");
 var typingTimer = null;
+var finaleOverlay = document.getElementById("finaleOverlay");
+var finaleLottie = document.getElementById("finaleLottie");
+var finaleShown = false;
+
+function showFinale() {
+	if (finaleShown) {
+		return;
+	}
+
+	finaleShown = true;
+	finaleOverlay.classList.add("show");
+
+	if (finaleLottie) {
+		finaleLottie.stop();
+		finaleLottie.play();
+	}
+
+	setTimeout(function () {
+		finaleOverlay.classList.remove("show");
+	}, 6000);
+}
 
 var letterText = `To：my lovely 牛
 依旧见字如面！
@@ -147,10 +168,13 @@ function startTypingLetter() {
 	var index = 0;
 	var TYPE_SPEED = 85;
 
-	function typeNextChar() {
-		if (index >= letterText.length) {
-			return;
-		}
+function typeNextChar() {
+	if (index >= letterText.length) {
+		setTimeout(function () {
+			showFinale();
+		}, 500);
+		return;
+	}
 
 		var currentChar = letterText.charAt(index);
 		typedLetter.textContent += currentChar;
@@ -175,6 +199,10 @@ function startTypingLetter() {
 function showFullLetter() {
 	clearTimeout(typingTimer);
 	typedLetter.textContent = letterText;
+
+	setTimeout(function () {
+		showFinale();
+	}, 500);
 }
 
 function fadeBgmVolume(targetVolume, duration) {
@@ -200,6 +228,9 @@ function fadeBgmVolume(targetVolume, duration) {
 }
 
 envelopeBtn.addEventListener("click", function () {
+	finaleShown = false;
+	finaleOverlay.classList.remove("show");
+
 	letterModal.classList.add("show");
 
 	// 打开信时，背景音乐慢慢降低
