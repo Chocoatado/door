@@ -528,9 +528,9 @@ self.peep2Timer = null;
 
 self.cuteSway = function(){
 	self.frame = 0;
-	self.bounce = 0.8;
-	bounceVel = 0.12;
-	swayVel = 0.55 * self.direction;
+	self.bounce = 0.9;
+	bounceVel = 0.06;
+	swayVel = 0.28 * self.direction;
 };
 
 self.showPeep2Once = function(){
