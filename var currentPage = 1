@@ -283,6 +283,10 @@ function triggerIntroPeepSway() {
 	if (typeof window.level.player.cuteSway === "function") {
 		window.level.player.cuteSway();
 	}
+
+	if (typeof window.level.player.showPeep2Once === "function") {
+		window.level.player.showPeep2Once();
+	}
 }
 
 introCanvas.addEventListener("click", function (event) {
@@ -294,9 +298,9 @@ introCanvas.addEventListener("click", function (event) {
 		return;
 	}
 
-	var rect = introCanvas.getBoundingClientRect();
-	var clickX = event.clientX - rect.left;
-	var clickY = event.clientY - rect.top;
+var rect = introCanvas.getBoundingClientRect();
+var clickX = (event.clientX - rect.left) * (introCanvas.width / rect.width);
+var clickY = (event.clientY - rect.top) * (introCanvas.height / rect.height);
 
 	var player = window.level.player;
 
