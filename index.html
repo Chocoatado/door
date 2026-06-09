@@ -269,6 +269,49 @@ var totalPages = 3;
 var wholeContainer = document.getElementById("whole_container");
 var prevPage = document.getElementById("prevPage");
 var nextPage = document.getElementById("nextPage");
+var introCanvas = document.getElementById("canvas_intro");
+
+function triggerIntroPeepSway() {
+	if (!window.level || !window.level.player) {
+		return;
+	}
+
+	if (currentPage !== 1) {
+		return;
+	}
+
+	if (typeof window.level.player.cuteSway === "function") {
+		window.level.player.cuteSway();
+	}
+}
+
+introCanvas.addEventListener("click", function (event) {
+	if (!window.level || !window.level.player) {
+		return;
+	}
+
+	if (currentPage !== 1) {
+		return;
+	}
+
+	var rect = introCanvas.getBoundingClientRect();
+	var clickX = event.clientX - rect.left;
+	var clickY = event.clientY - rect.top;
+
+	var player = window.level.player;
+
+	var introScale = 1.5;
+	var playerScreenX = player.x * introScale - introCanvas.width * 0.25;
+	var playerScreenY = player.y * introScale - introCanvas.height * 0.25;
+
+	var dx = clickX - playerScreenX;
+	var dy = clickY - playerScreenY;
+	var distance = Math.sqrt(dx * dx + dy * dy);
+
+	if (distance < 95) {
+		triggerIntroPeepSway();
+	}
+});
 
 function restartFirstPageGame() {
 	if (typeof Level === "function" && typeof INTRO_LEVEL !== "undefined") {
