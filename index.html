@@ -566,23 +566,28 @@ thirdPeep = new Peep({
 		}
 	});
 
-	function animateThirdPeep() {
-		requestAnimationFrame(animateThirdPeep);
+var thirdPeepFrameCount = 0;
 
-if (!thirdPeep) {
-	return;
-}
+function animateThirdPeep() {
+	requestAnimationFrame(animateThirdPeep);
 
-var topValue = document.getElementById("whole_container").style.top || "0px";
+	if (!thirdPeep) {
+		return;
+	}
 
-if (topValue.indexOf("-200") === -1) {
-	thirdPeepCtx.clearRect(0, 0, thirdPeepCanvas.width, thirdPeepCanvas.height);
-	return;
-}
+	var topValue = document.getElementById("whole_container").style.top || "0px";
 
-fakeLevel.width = thirdPeepCanvas.width / thirdPeepScale;
-fakeLevel.height = thirdPeepCanvas.height / thirdPeepScale;
+	if (topValue.indexOf("-200") === -1) {
+		thirdPeepCtx.clearRect(0, 0, thirdPeepCanvas.width, thirdPeepCanvas.height);
+		return;
+	}
 
+	fakeLevel.width = thirdPeepCanvas.width / thirdPeepScale;
+	fakeLevel.height = thirdPeepCanvas.height / thirdPeepScale;
+
+	thirdPeepFrameCount++;
+
+	if (thirdPeepFrameCount % 2 === 0) {
 		var beforeX = thirdPeep.x;
 		var beforeY = thirdPeep.y;
 
@@ -600,42 +605,42 @@ fakeLevel.height = thirdPeepCanvas.height / thirdPeepScale;
 				life: 1
 			});
 		}
-
-		thirdPeepCtx.clearRect(0, 0, thirdPeepCanvas.width, thirdPeepCanvas.height);
-
-		// 画会慢慢消失的白色尾迹
-		if (thirdPeepTrail.length > 1) {
-			for (var i = 1; i < thirdPeepTrail.length; i++) {
-				var p1 = thirdPeepTrail[i - 1];
-				var p2 = thirdPeepTrail[i];
-
-				thirdPeepCtx.beginPath();
-				thirdPeepCtx.moveTo(p1.x, p1.y);
-				thirdPeepCtx.lineTo(p2.x, p2.y);
-				thirdPeepCtx.strokeStyle = "rgba(255, 255, 255, " + (p2.life * 0.9) + ")";
-				thirdPeepCtx.lineWidth = 10;
-				thirdPeepCtx.lineCap = "round";
-				thirdPeepCtx.lineJoin = "round";
-				thirdPeepCtx.stroke();
-			}
-		}
-
-		for (var j = thirdPeepTrail.length - 1; j >= 0; j--) {
-			thirdPeepTrail[j].life -= 0.012;
-
-			if (thirdPeepTrail[j].life <= 0) {
-				thirdPeepTrail.splice(j, 1);
-			}
-		}
-
-thirdPeepCtx.save();
-thirdPeepCtx.scale(1.5, 1.5);
-
-thirdPeep.drawShadow(thirdPeepCtx);
-thirdPeep.draw(thirdPeepCtx);
-
-thirdPeepCtx.restore();
 	}
+
+	thirdPeepCtx.clearRect(0, 0, thirdPeepCanvas.width, thirdPeepCanvas.height);
+
+	thirdPeepCtx.save();
+	thirdPeepCtx.scale(thirdPeepScale, thirdPeepScale);
+
+	if (thirdPeepTrail.length > 1) {
+		for (var i = 1; i < thirdPeepTrail.length; i++) {
+			var p1 = thirdPeepTrail[i - 1];
+			var p2 = thirdPeepTrail[i];
+
+			thirdPeepCtx.beginPath();
+			thirdPeepCtx.moveTo(p1.x, p1.y);
+			thirdPeepCtx.lineTo(p2.x, p2.y);
+			thirdPeepCtx.strokeStyle = "rgba(255, 255, 255, " + (p2.life * 0.9) + ")";
+			thirdPeepCtx.lineWidth = 10 / thirdPeepScale;
+			thirdPeepCtx.lineCap = "round";
+			thirdPeepCtx.lineJoin = "round";
+			thirdPeepCtx.stroke();
+		}
+	}
+
+	thirdPeep.drawShadow(thirdPeepCtx);
+	thirdPeep.draw(thirdPeepCtx);
+
+	thirdPeepCtx.restore();
+
+	for (var j = thirdPeepTrail.length - 1; j >= 0; j--) {
+		thirdPeepTrail[j].life -= 0.012;
+
+		if (thirdPeepTrail[j].life <= 0) {
+			thirdPeepTrail.splice(j, 1);
+		}
+	}
+}
 
 	animateThirdPeep();
 }
