@@ -412,5 +412,68 @@ function goToPage(pageNumber) {
 		});
 	</script>
 
+	// 好的游戏那句话的打字版本
+	<script>
+window.iHeartYou = function(){
+
+	for(var i=0; i<levelObjects.length; i++) {
+		levelObjects[i].onlyPath();
+	}
+
+	document.getElementById("canvas_container").style.backgroundPosition = "0px -390px";
+	document.getElementById("screen_two").style.background = "#787785";
+
+	var vtext = document.getElementById("valentines_text");
+	vtext.style.display = "block";
+	vtext.style.letterSpacing = "1px";
+	vtext.style.whiteSpace = "pre-line";
+	vtext.style.transition = "none";
+	vtext.textContent = "";
+
+	var secondPageMessage = "嘿嘿 surprise！<3\n有没有想起我们一起玩双影奇境的时候，那时你也创作了一幅大作！\n好的游戏要留给对的人，我宣布这个游戏只对你开放！";
+
+	var index = 0;
+	var secondTextTimer = null;
+	var SPEED = 32;
+
+	function typeSecondPageText() {
+		if (index >= secondPageMessage.length) {
+			return;
+		}
+
+		var currentChar = secondPageMessage.charAt(index);
+		vtext.textContent += currentChar;
+		index++;
+
+		var delay = SPEED;
+
+		if ("，。！？、；：！~".indexOf(currentChar) !== -1) {
+			delay = 80;
+		}
+
+		if (currentChar === "\n") {
+			delay = 120;
+		}
+
+		secondTextTimer = setTimeout(typeSecondPageText, delay);
+	}
+
+	typeSecondPageText();
+
+	setTimeout(function(){
+		clearTimeout(secondTextTimer);
+		vtext.textContent = secondPageMessage;
+	}, 4300);
+
+	setTimeout(function(){
+		document.getElementById("whole_container").style.top = "-200%";
+	}, 7300);
+
+	setTimeout(function(){
+		yourMessage.focus();
+	}, 8500);
+
+};
+</script>
 </body>
 </html>
