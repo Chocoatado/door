@@ -738,3 +738,26 @@ textarea {
 	visibility: visible;
 	transition: opacity 0.6s ease;
 }
+#thirdPeepCanvas {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1;
+	pointer-events: auto;
+	display: none;
+}
+
+#birthday_end {
+	position: relative;
+	z-index: 2;
+	pointer-events: none;
+}
+
+#birthday_end button,
+#birthday_end input,
+#birthday_end p,
+#birthday_end h1 {
+	pointer-events: auto;
+}
