@@ -779,7 +779,6 @@ function iHeartYou(){
 
 var vtext = document.getElementById("valentines_text");
 vtext.style.display = "block";
-vtext.style.letterSpacing = "1px";
 
 if(window.location.hash){
 	vtext.textContent = encryptString(decodeURIComponent(window.location.hash).substring(1));
