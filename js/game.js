@@ -766,23 +766,42 @@ function next(){
 	}
 }
 
-function iHeartYou(){
-	
-	for(var i=0; i<levelObjects.length; i++) {
-		levelObjects[i].onlyPath();
+var vtext = document.getElementById("valentines_text");
+vtext.style.display = "block";
+vtext.style.letterSpacing = "1px";
+vtext.innerHTML = "";
+
+var secondPageMessage = "嘿嘿 surprise！&lt;3<br>有没有想起我们一起玩双影奇境的时候，那时你也创作了一幅大作！<br>好的游戏要留给对的人，我宣布这个游戏只对你开放！";
+
+function typeSecondPageMessage() {
+	var index = 0;
+	var TYPE_SPEED = 45;
+
+	function typeNextChar() {
+		if (index >= secondPageMessage.length) {
+			return;
+		}
+
+		if (secondPageMessage.substring(index, index + 4) === "<br>") {
+			vtext.innerHTML += "<br>";
+			index += 4;
+			setTimeout(typeNextChar, 180);
+			return;
+		}
+
+		vtext.innerHTML += secondPageMessage.charAt(index);
+		index++;
+
+		setTimeout(typeNextChar, TYPE_SPEED);
 	}
 
-	document.getElementById("canvas_container").style.backgroundPosition = "0px -390px";
-	document.getElementById("screen_two").style.background = "#787785";
-	
-	var can_cont_text = document.getElementById("canvas_container_text");
+	typeNextChar();
+}
 
-	var vtext = document.getElementById("valentines_text");
-	vtext.style.display = "block";
-	if(window.location.hash){
-		vtext.textContent = encryptString(decodeURIComponent(window.location.hash).substring(1));
+if(window.location.hash){
+	vtext.textContent = encryptString(decodeURIComponent(window.location.hash).substring(1));
 }else{
-	vtext.innerHTML = "嘿嘿 surprise！&lt;3<br>有没有想起我们一起玩双影奇境的时候，那时你也创作了一幅大作！<br>好的游戏要留给对的人，我宣布这个游戏只对你开放！";
+	typeSecondPageMessage();
 }
 
 
