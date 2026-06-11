@@ -634,10 +634,33 @@ function animateThirdPeep() {
 		}
 	}
 
-	thirdPeep.drawShadow(thirdPeepCtx);
-	thirdPeep.draw(thirdPeepCtx);
+// 在拖尾后面画一个小爱心
+if (thirdPeepTrail.length > 8 && images.key) {
+	var heartIndex = Math.max(0, thirdPeepTrail.length - 8);
+	var heartPoint = thirdPeepTrail[heartIndex];
+
+	thirdPeepCtx.save();
+	thirdPeepCtx.globalAlpha = heartPoint.life * 0.95;
+
+	var heartSize = 34;
+	var heartX = heartPoint.x;
+	var heartY = heartPoint.y - 34;
+
+	thirdPeepCtx.drawImage(
+		images.key,
+		heartX - heartSize / 2,
+		heartY - heartSize / 2,
+		heartSize,
+		heartSize * 0.6
+	);
 
 	thirdPeepCtx.restore();
+}
+
+thirdPeep.drawShadow(thirdPeepCtx);
+thirdPeep.draw(thirdPeepCtx);
+
+thirdPeepCtx.restore();
 
 	for (var j = thirdPeepTrail.length - 1; j >= 0; j--) {
 		thirdPeepTrail[j].life -= 0.012;
