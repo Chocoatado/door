@@ -567,9 +567,16 @@ function startThirdPagePeep() {
 	function animateThirdPeep() {
 		requestAnimationFrame(animateThirdPeep);
 
-		if (!thirdPeep || currentPage !== 3) {
-			return;
-		}
+if (!thirdPeep) {
+	return;
+}
+
+var topValue = document.getElementById("whole_container").style.top || "0px";
+
+if (topValue.indexOf("-200") === -1) {
+	thirdPeepCtx.clearRect(0, 0, thirdPeepCanvas.width, thirdPeepCanvas.height);
+	return;
+}
 
 		fakeLevel.width = thirdPeepCanvas.width;
 		fakeLevel.height = thirdPeepCanvas.height;
