@@ -740,3 +740,24 @@ textarea {
 	visibility: visible;
 	transition: opacity 0.6s ease;
 }
+/* Second page final message */
+#valentines_text {
+	display: none;
+	position: absolute !important;
+	left: 50% !important;
+	top: 70% !important;
+	transform: translateX(-50%) !important;
+
+	width: 90% !important;
+	max-width: 760px !important;
+
+	text-align: center !important;
+	white-space: pre-line !important;
+
+	font-size: 18px !important;
+	line-height: 1.9 !important;
+	letter-spacing: 1px !important;
+
+	color: #F3C8C8 !important;
+	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
+}
