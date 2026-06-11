@@ -546,25 +546,31 @@ thirdPeep = new Peep({
 	y: thirdPeepCanvas.height / thirdPeepScale * 0.72
 }, fakeLevel);
 
-	thirdPeepCanvas.addEventListener("click", function(event) {
-		var rect = thirdPeepCanvas.getBoundingClientRect();
-		var clickX = (event.clientX - rect.left) * (thirdPeepCanvas.width / rect.width);
-		var clickY = (event.clientY - rect.top) * (thirdPeepCanvas.height / rect.height);
+thirdPeepCanvas.addEventListener("click", function(event) {
+	var rect = thirdPeepCanvas.getBoundingClientRect();
 
-		var dx = clickX - thirdPeep.x;
-		var dy = clickY - thirdPeep.y;
-		var distance = Math.sqrt(dx * dx + dy * dy);
+	var clickX = (event.clientX - rect.left) * (thirdPeepCanvas.width / rect.width);
+	var clickY = (event.clientY - rect.top) * (thirdPeepCanvas.height / rect.height);
 
-		if (distance < 95) {
-			if (typeof thirdPeep.cuteSway === "function") {
-				thirdPeep.cuteSway();
-			}
+	// 因为第三页小人被放大了 1.5 倍，
+	// 所以点击坐标也要除以 thirdPeepScale，换回小人的真实坐标
+	var clickWorldX = clickX / thirdPeepScale;
+	var clickWorldY = clickY / thirdPeepScale;
 
-			if (typeof thirdPeep.showPeep2Once === "function") {
-				thirdPeep.showPeep2Once();
-			}
+	var dx = clickWorldX - thirdPeep.x;
+	var dy = clickWorldY - thirdPeep.y;
+	var distance = Math.sqrt(dx * dx + dy * dy);
+
+	if (distance < 110) {
+		if (typeof thirdPeep.cuteSway === "function") {
+			thirdPeep.cuteSway();
 		}
-	});
+
+		if (typeof thirdPeep.showPeep2Once === "function") {
+			thirdPeep.showPeep2Once();
+		}
+	}
+});
 
 var thirdPeepFrameCount = 0;
 
