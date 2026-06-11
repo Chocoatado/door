@@ -104,7 +104,9 @@ canvas {
 	background-color: #787785;
 }
 
-#valentines_text,
+#valentines_text {
+	white-space: pre-line;
+}
 #rewind_text,
 #replay_text {
 	display: none;
