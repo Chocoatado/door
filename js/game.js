@@ -777,14 +777,43 @@ function iHeartYou(){
 	
 	var can_cont_text = document.getElementById("canvas_container_text");
 
-	var vtext = document.getElementById("valentines_text");
-	vtext.style.display = "block";
-	vtext.style.letterSpacing = "1px";
-	if(window.location.hash){
-		vtext.textContent = encryptString(decodeURIComponent(window.location.hash).substring(1));
-}else{
-	vtext.innerHTML = "嘿嘿 surprise！&lt;3<br>有没有想起我们一起玩双影奇境的时候，那时你也创作了一幅大作！<br>好的游戏要留给对的人，我宣布这个游戏只对你开放！";
+var vtext = document.getElementById("valentines_text");
+vtext.style.display = "block";
+vtext.style.letterSpacing = "1px";
+vtext.textContent = "";
+
+var secondPageText = "嘿嘿 surprise！<3\n有没有想起我们一起玩双影奇境的时候，那时你也创作了一幅大作！\n好的游戏要留给对的人，我宣布这个游戏只对你开放！";
+
+if(window.location.hash){
+	secondPageText = encryptString(decodeURIComponent(window.location.hash).substring(1));
 }
+
+var secondPageIndex = 0;
+var SECOND_PAGE_TYPE_SPEED = 85;
+
+function typeSecondPageText() {
+	if (secondPageIndex >= secondPageText.length) {
+		return;
+	}
+
+	var currentChar = secondPageText.charAt(secondPageIndex);
+	vtext.textContent += currentChar;
+	secondPageIndex++;
+
+	var delay = SECOND_PAGE_TYPE_SPEED;
+
+	if ("，。！？、；：".indexOf(currentChar) !== -1) {
+		delay = 260;
+	}
+
+	if (currentChar === "\n") {
+		delay = 420;
+	}
+
+	setTimeout(typeSecondPageText, delay);
+}
+
+typeSecondPageText();
 
 
 	// After 9 seconds, swipe down to CREDITS.
