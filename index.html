@@ -619,15 +619,20 @@ if (topValue.indexOf("-200") === -1) {
 		}
 
 		for (var j = thirdPeepTrail.length - 1; j >= 0; j--) {
-			thirdPeepTrail[j].life -= 0.018;
+			thirdPeepTrail[j].life -= 0.012;
 
 			if (thirdPeepTrail[j].life <= 0) {
 				thirdPeepTrail.splice(j, 1);
 			}
 		}
 
-		thirdPeep.drawShadow(thirdPeepCtx);
-		thirdPeep.draw(thirdPeepCtx);
+thirdPeepCtx.save();
+thirdPeepCtx.scale(1.5, 1.5);
+
+thirdPeep.drawShadow(thirdPeepCtx);
+thirdPeep.draw(thirdPeepCtx);
+
+thirdPeepCtx.restore();
 	}
 
 	animateThirdPeep();
