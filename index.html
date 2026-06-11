@@ -450,16 +450,36 @@ window.iHeartYou = function(){
 		chars.push(span);
 	}
 
+	var cursor = document.createElement("span");
+	cursor.textContent = "|";
+	cursor.style.display = "inline-block";
+	cursor.style.marginLeft = "2px";
+	cursor.style.animation = "secondPageCursorBlink 0.8s infinite";
+	cursor.style.visibility = "visible";
+	vtext.appendChild(cursor);
+
+	var style = document.createElement("style");
+	style.textContent = "@keyframes secondPageCursorBlink { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }";
+	document.head.appendChild(style);
+
 	var index = 0;
 	var secondTextTimer = null;
 	var SPEED = 70;
 
 	function typeSecondPageText() {
 		if (index >= chars.length) {
+			cursor.style.visibility = "hidden";
 			return;
 		}
 
 		chars[index].style.visibility = "visible";
+
+		if (chars[index].nextSibling) {
+			vtext.insertBefore(cursor, chars[index].nextSibling);
+		} else {
+			vtext.appendChild(cursor);
+		}
+
 		index++;
 
 		secondTextTimer = setTimeout(typeSecondPageText, SPEED);
@@ -468,20 +488,12 @@ window.iHeartYou = function(){
 	typeSecondPageText();
 
 	setTimeout(function(){
-		clearTimeout(secondTextTimer);
-
-		for (var i = 0; i < chars.length; i++) {
-			chars[i].style.visibility = "visible";
-		}
-	}, 4300);
-
-	setTimeout(function(){
 		document.getElementById("whole_container").style.top = "-200%";
-	}, 7300);
+	}, 10000);
 
 	setTimeout(function(){
 		yourMessage.focus();
-	}, 8500);
+	}, 11200);
 
 };
 </script>
