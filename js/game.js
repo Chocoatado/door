@@ -781,9 +781,9 @@ function iHeartYou(){
 	vtext.style.display = "block";
 	if(window.location.hash){
 		vtext.textContent = encryptString(decodeURIComponent(window.location.hash).substring(1));
-	}else{
-		vtext.textContent = "a lovely message from me to you <3";
-	}
+}else{
+	vtext.innerHTML = "嘿嘿 surprise！&lt;3<br>有没有想起我们一起玩双影奇境的时候，那时你也创作了一幅大作！<br>好的游戏要留给对的人，我宣布这个游戏只对你开放！";
+}
 
 	setTimeout(function(){
 		vtext.style.letterSpacing = "3px";
