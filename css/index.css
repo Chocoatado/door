@@ -22,6 +22,7 @@ canvas {
 	transition: top 1s ease-in-out;
 }
 
+#screen_zero,
 #screen_one,
 #screen_two,
 #screen_three {
@@ -760,4 +761,82 @@ textarea {
 #birthday_end p,
 #birthday_end h1 {
 	pointer-events: auto;
+}
+/* New first page: love question */
+#screen_zero {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background: #FDEBEB;
+	overflow: hidden;
+}
+
+.love_card {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: min(82vw, 760px);
+	min-height: 360px;
+	border-radius: 32px;
+	background: linear-gradient(135deg, #FDEBEB, #f7d6d7);
+	box-shadow: 0 26px 70px rgba(120, 119, 133, 0.22);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.love_heart {
+	font-size: 54px;
+	color: #DEB7B8;
+	line-height: 1;
+	margin-bottom: 12px;
+	animation: heartbeat 1.3s infinite;
+}
+
+.love_card h1 {
+	margin: 0 0 28px 0;
+	color: #787785;
+	font-size: 34px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
+}
+
+.love_buttons {
+	position: relative;
+	width: 320px;
+	height: 70px;
+}
+
+.love_btn {
+	position: absolute;
+	top: 10px;
+	border: none;
+	border-radius: 999px;
+	padding: 12px 30px;
+	font-size: 18px;
+	cursor: pointer;
+	font-family: "RoundPix", "Microsoft YaHei", "PingFang SC", sans-serif !important;
+	font-weight: 400;
+	box-shadow: 0 10px 28px rgba(120, 119, 133, 0.2);
+	transition: transform 0.18s ease, left 0.22s ease, top 0.22s ease;
+}
+
+.yes_btn {
+	left: 78px;
+	background: #DEB7B8;
+	color: white;
+}
+
+.no_btn {
+	left: 178px;
+	background: white;
+	color: #787785;
+}
+
+.love_btn:hover {
+	transform: translateY(-2px);
 }
