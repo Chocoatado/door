@@ -284,7 +284,7 @@ letterModal.addEventListener("dblclick", function () {
 });
 
 var currentPage = 1;
-var totalPages = 3;
+var totalPages = 4;
 var wholeContainer = document.getElementById("whole_container");
 var prevPage = document.getElementById("prevPage");
 var nextPage = document.getElementById("nextPage");
@@ -371,7 +371,9 @@ function updatePageButtons() {
 function syncCurrentPageFromPosition() {
 	var topValue = wholeContainer.style.top || "0px";
 
-	if (topValue.indexOf("-200") !== -1) {
+	if (topValue.indexOf("-300") !== -1) {
+		currentPage = 4;
+	} else if (topValue.indexOf("-200") !== -1) {
 		currentPage = 3;
 	} else if (topValue.indexOf("-100") !== -1) {
 		currentPage = 2;
@@ -393,7 +395,7 @@ function goToPage(pageNumber) {
 
 	currentPage = pageNumber;
 
-	if (currentPage === 1) {
+	if (currentPage === 2) {
 		restartFirstPageGame();
 	}
 
@@ -423,7 +425,34 @@ function goToPage(pageNumber) {
 			setInterval(function () {
 				syncCurrentPageFromPosition();
 			}, 300);
+var yesLoveBtn = document.getElementById("yesLoveBtn");
+var noLoveBtn = document.getElementById("noLoveBtn");
+var screenZero = document.getElementById("screen_zero");
 
+yesLoveBtn.addEventListener("click", function () {
+	goToPage(2);
+});
+
+function moveNoButtonAway() {
+	var card = screenZero.querySelector(".love_card");
+	var cardRect = card.getBoundingClientRect();
+
+	var maxX = cardRect.width - noLoveBtn.offsetWidth - 40;
+	var maxY = cardRect.height - noLoveBtn.offsetHeight - 40;
+
+	var randomX = 20 + Math.random() * maxX;
+	var randomY = 190 + Math.random() * Math.max(40, maxY - 160);
+
+	noLoveBtn.style.left = randomX + "px";
+	noLoveBtn.style.top = randomY + "px";
+}
+
+noLoveBtn.addEventListener("mouseenter", moveNoButtonAway);
+noLoveBtn.addEventListener("click", moveNoButtonAway);
+noLoveBtn.addEventListener("touchstart", function (event) {
+	event.preventDefault();
+	moveNoButtonAway();
+});
 			goToPage(1);
 		});
 	</script>
