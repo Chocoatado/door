@@ -295,9 +295,9 @@ function triggerIntroPeepSway() {
 		return;
 	}
 
-	if (currentPage !== 1) {
-		return;
-	}
+if (currentPage !== 2) {
+	return;
+}
 
 	if (typeof window.level.player.cuteSway === "function") {
 		window.level.player.cuteSway();
@@ -313,7 +313,7 @@ introCanvas.addEventListener("click", function (event) {
 		return;
 	}
 
-	if (currentPage !== 1) {
+	if (currentPage !== 2) {
 		return;
 	}
 
