@@ -779,7 +779,7 @@ textarea {
 	width: min(82vw, 760px);
 	min-height: 360px;
 	border-radius: 32px;
-	background: linear-gradient(135deg, #FDEBEB, #f7d6d7);
+	background: linear-gradient(135deg, #FDEBEB, white);
 	box-shadow: 0 26px 70px rgba(120, 119, 133, 0.22);
 	display: flex;
 	flex-direction: column;
