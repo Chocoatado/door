@@ -842,20 +842,7 @@ textarea {
 }
 
 .birthday_words h1 {
-	position: relative;
-}
-
-.birthday_words h1::after {
-	content: "Happy Birthday\A to NiuNiu";
-	white-space: pre;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 100%;
-	transform: scaleY(-1);
-	transform-origin: top;
-	color: inherit;
-	opacity: 0.22;
-	filter: blur(1px);
-	pointer-events: none;
+	text-shadow:
+		0 2px 6px rgba(255, 255, 255, 0.9),
+		0 0 14px rgba(255, 255, 255, 0.75) !important;
 }
