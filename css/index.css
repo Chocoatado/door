@@ -840,3 +840,22 @@ textarea {
 .love_btn:hover {
 	transform: translateY(-2px);
 }
+
+.birthday_words h1 {
+	position: relative;
+}
+
+.birthday_words h1::after {
+	content: "Happy Birthday\A to NiuNiu";
+	white-space: pre;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 100%;
+	transform: scaleY(-1);
+	transform-origin: top;
+	color: inherit;
+	opacity: 0.22;
+	filter: blur(1px);
+	pointer-events: none;
+}
