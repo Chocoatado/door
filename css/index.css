@@ -843,9 +843,9 @@ textarea {
 
 
 .love_typed_text {
-	min-height: 180px;
+	min-height: 120px;
 	color: #787785;
-	font-size: 26px;
+	font-size: 18px;
 	line-height: 2;
 	letter-spacing: 1px;
 	text-align: center;
@@ -888,4 +888,24 @@ textarea {
 	font-size: 18px !important;
 	white-space: nowrap !important;
 	text-align: center !important;
+}
+
+.love_buttons {
+	width: 620px !important;
+	height: 78px !important;
+}
+
+.love_btn {
+	width: 260px !important;
+	height: 50px !important;
+	font-size: 16px !important;
+	padding: 0 12px !important;
+}
+
+.yes_btn {
+	left: 35px !important;
+}
+
+.no_btn {
+	left: 325px !important;
 }
