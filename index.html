@@ -367,6 +367,15 @@ function updatePageButtons() {
 	} else {
 		nextPage.style.display = "inline-block";
 	}
+
+	// No 选项只允许出现在第一页
+	if (noLoveBtn) {
+		if (currentPage === 1) {
+			noLoveBtn.style.display = "inline-block";
+		} else {
+			noLoveBtn.style.display = "none";
+		}
+	}
 }
 function syncCurrentPageFromPosition() {
 	var topValue = wholeContainer.style.top || "0px";
