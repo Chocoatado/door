@@ -428,7 +428,56 @@ function goToPage(pageNumber) {
 var yesLoveBtn = document.getElementById("yesLoveBtn");
 var noLoveBtn = document.getElementById("noLoveBtn");
 var screenZero = document.getElementById("screen_zero");
+var loveTypedText = document.getElementById("loveTypedText");
+var loveButtons = document.getElementById("loveButtons");
 
+var loveIntroText = "有一天\n\n我和大门钥匙一不小心一起掉进了黑洞，\n你只能救一个  你的选择是：";
+
+function typeLoveIntro() {
+	loveTypedText.textContent = "";
+	loveButtons.classList.remove("show");
+
+	var cursor = document.createElement("span");
+	cursor.className = "love_cursor";
+	cursor.textContent = "|";
+
+	var index = 0;
+	var speed = 85;
+
+	function typeNextLoveChar() {
+		if (index >= loveIntroText.length) {
+			loveTypedText.appendChild(cursor);
+
+			setTimeout(function () {
+				cursor.style.display = "none";
+				loveButtons.classList.add("show");
+			}, 500);
+
+			return;
+		}
+
+		var currentChar = loveIntroText.charAt(index);
+		loveTypedText.textContent += currentChar;
+		loveTypedText.appendChild(cursor);
+		index++;
+
+		var delay = speed;
+
+		if ("，。！？、；：".indexOf(currentChar) !== -1) {
+			delay = 220;
+		}
+
+		if (currentChar === "\n") {
+			delay = 350;
+		}
+
+		setTimeout(typeNextLoveChar, delay);
+	}
+
+	typeNextLoveChar();
+}
+
+typeLoveIntro();
 yesLoveBtn.addEventListener("click", function () {
 	goToPage(2);
 });
