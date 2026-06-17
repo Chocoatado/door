@@ -776,11 +776,11 @@ textarea {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: min(82vw, 760px);
-	min-height: 360px;
-	border-radius: 32px;
-	background: #FDEBEB;
-	box-shadow: 0 26px 70px rgba(120, 119, 133, 0.22);
+	width: min(92vw, 900px);
+	min-height: 260px;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -843,9 +843,9 @@ textarea {
 
 
 .love_typed_text {
-	min-height: 120px;
+	min-height: 105px;
 	color: #787785;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 2;
 	letter-spacing: 1px;
 	text-align: center;
