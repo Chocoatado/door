@@ -930,8 +930,8 @@ textarea {
 #loveTypedText.love_typed_text {
 	width: 100vw !important;
 	max-width: none !important;
-	min-height: 115px !important;
-	font-size: 22px !important;
+	min-height: 150px !important;
+	font-size: 28px !important;
 	line-height: 2 !important;
 	letter-spacing: 1.2px !important;
 	white-space: pre !important;
