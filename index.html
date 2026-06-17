@@ -488,35 +488,71 @@ yesLoveBtn.addEventListener("click", function () {
 	goToPage(2);
 });
 
+var noButtonHasMovedToBody = false;
+
 function moveNoButtonAway(event) {
 	var safePadding = 28;
 
+	// 第一次逃跑时，把 No 按钮移到 body 下面
+	// 这样它就不会再被 love_card 的位置和 transform 影响
+	if (!noButtonHasMovedToBody) {
+		var currentRect = noLoveBtn.getBoundingClientRect();
+
+		document.body.appendChild(noLoveBtn);
+
+		noLoveBtn.style.position = "fixed";
+		noLoveBtn.style.left = currentRect.left + "px";
+		noLoveBtn.style.top = currentRect.top + "px";
+		noLoveBtn.style.zIndex = "3000";
+
+		noButtonHasMovedToBody = true;
+	}
+
 	noLoveBtn.style.position = "fixed";
-	noLoveBtn.style.zIndex = "999";
+	noLoveBtn.style.zIndex = "3000";
 	noLoveBtn.style.transition = "left 0.22s ease, top 0.22s ease, transform 0.18s ease";
 
-	var maxX = window.innerWidth - noLoveBtn.offsetWidth - safePadding;
-	var maxY = window.innerHeight - noLoveBtn.offsetHeight - safePadding;
+	var buttonWidth = noLoveBtn.offsetWidth;
+	var buttonHeight = noLoveBtn.offsetHeight;
 
-	var mouseX = event ? event.clientX : window.innerWidth / 2;
-	var mouseY = event ? event.clientY : window.innerHeight / 2;
+	var minX = safePadding;
+	var minY = safePadding;
+	var maxX = window.innerWidth - buttonWidth - safePadding;
+	var maxY = window.innerHeight - buttonHeight - safePadding;
 
-	var randomX = safePadding;
-	var randomY = safePadding;
+	// 防止极小屏幕时 max 比 min 小
+	if (maxX < minX) {
+		maxX = minX;
+	}
 
-	for (var i = 0; i < 20; i++) {
-		randomX = safePadding + Math.random() * (maxX - safePadding);
-		randomY = safePadding + Math.random() * (maxY - safePadding);
+	if (maxY < minY) {
+		maxY = minY;
+	}
+
+	var mouseX = event && event.clientX ? event.clientX : window.innerWidth / 2;
+	var mouseY = event && event.clientY ? event.clientY : window.innerHeight / 2;
+
+	var randomX = minX;
+	var randomY = minY;
+
+	// 多试几次，尽量不要跑到鼠标附近
+	for (var i = 0; i < 40; i++) {
+		randomX = minX + Math.random() * (maxX - minX);
+		randomY = minY + Math.random() * (maxY - minY);
 
 		var distance = Math.sqrt(
 			Math.pow(randomX - mouseX, 2) +
 			Math.pow(randomY - mouseY, 2)
 		);
 
-		if (distance > 180) {
+		if (distance > 220) {
 			break;
 		}
 	}
+
+	// 最后再强制夹在屏幕内，保证每一次都不会消失
+	randomX = Math.max(minX, Math.min(randomX, maxX));
+	randomY = Math.max(minY, Math.min(randomY, maxY));
 
 	noLoveBtn.style.left = randomX + "px";
 	noLoveBtn.style.top = randomY + "px";
