@@ -442,7 +442,7 @@ function typeLoveIntro() {
 
 	var index = 0;
 	var typedSoFar = "";
-	var speed = 85;
+	var speed = 115;
 
 	loveTypedText.textContent = "";
 	loveTypedText.appendChild(cursor);
@@ -451,9 +451,9 @@ function typeLoveIntro() {
 		if (index >= loveIntroText.length) {
 			cursor.style.display = "none";
 
-			setTimeout(function () {
-				loveButtons.classList.add("show");
-			}, 300);
+setTimeout(function () {
+	loveButtons.classList.add("show");
+}, 700);
 
 			return;
 		}
@@ -481,7 +481,9 @@ function typeLoveIntro() {
 	typeNextLoveChar();
 }
 
-typeLoveIntro();
+setTimeout(function () {
+	typeLoveIntro();
+}, 1400);
 yesLoveBtn.addEventListener("click", function () {
 	goToPage(2);
 });
@@ -490,14 +492,14 @@ function moveNoButtonAway() {
 	var card = screenZero.querySelector(".love_card");
 	var cardRect = card.getBoundingClientRect();
 
-	var maxX = cardRect.width - noLoveBtn.offsetWidth - 40;
-	var maxY = cardRect.height - noLoveBtn.offsetHeight - 40;
+	var maxX = window.innerWidth - noLoveBtn.offsetWidth - 40;
+	var maxY = window.innerHeight - noLoveBtn.offsetHeight - 40;
 
-	var randomX = 20 + Math.random() * maxX;
-	var randomY = 190 + Math.random() * Math.max(40, maxY - 160);
+	var randomPageX = 20 + Math.random() * maxX;
+	var randomPageY = 20 + Math.random() * maxY;
 
-	noLoveBtn.style.left = randomX + "px";
-	noLoveBtn.style.top = randomY + "px";
+	noLoveBtn.style.left = (randomPageX - cardRect.left) + "px";
+	noLoveBtn.style.top = (randomPageY - cardRect.top) + "px";
 }
 
 noLoveBtn.addEventListener("mouseenter", moveNoButtonAway);
