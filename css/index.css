@@ -918,11 +918,12 @@ textarea {
 }
 
 .love_typed_text {
-	width: 96vw !important;
+	width: 100vw !important;
 	max-width: none !important;
-	min-height: 95px !important;
-	font-size: 16px !important;
+	min-height: 105px !important;
+	font-size: 18px !important;
 	line-height: 2 !important;
+	letter-spacing: 1.2px !important;
 	white-space: pre !important;
 	text-align: center !important;
 }
