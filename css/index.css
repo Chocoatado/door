@@ -909,3 +909,20 @@ textarea {
 .no_btn {
 	left: 325px !important;
 }
+
+.love_card {
+	width: 96vw !important;
+	max-width: none !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+.love_typed_text {
+	width: 96vw !important;
+	max-width: none !important;
+	min-height: 95px !important;
+	font-size: 13px !important;
+	line-height: 2 !important;
+	white-space: pre !important;
+	text-align: center !important;
+}
