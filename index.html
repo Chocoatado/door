@@ -26,7 +26,7 @@
 	<div id="whole_container">
 <div id="screen_zero">
 	<div class="love_card">
-		<div class="love_heart">♡</div>
+		<div class="love_heart">🎂</div>
 
 		<h1 id="loveTypedText" class="love_typed_text"></h1>
 
@@ -441,7 +441,35 @@ var loveTypedText = document.getElementById("loveTypedText");
 var loveButtons = document.getElementById("loveButtons");
 
 var loveIntroText = "OOPS！就在刚刚，我和大门钥匙一不小心一起掉进了你的蛋糕里，\n你只能救一个  你的选择是：";
+function playTypeSound() {
+	var AudioContext = window.AudioContext || window.webkitAudioContext;
 
+	if (!AudioContext) {
+		return;
+	}
+
+	if (!window.typeAudioCtx) {
+		window.typeAudioCtx = new AudioContext();
+	}
+
+	var ctx = window.typeAudioCtx;
+	var oscillator = ctx.createOscillator();
+	var gain = ctx.createGain();
+
+	oscillator.type = "sine";
+	oscillator.frequency.value = 620;
+
+	gain.gain.setValueAtTime(0.025, ctx.currentTime);
+	gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.035);
+
+	oscillator.connect(gain);
+	gain.connect(ctx.destination);
+
+	oscillator.start();
+	oscillator.stop(ctx.currentTime + 0.035);
+}
+
+			
 function typeLoveIntro() {
 	loveButtons.classList.remove("show");
 
@@ -470,7 +498,9 @@ setTimeout(function () {
 		var currentChar = loveIntroText.charAt(index);
 		typedSoFar += currentChar;
 		index++;
-
+if (currentChar !== "\n" && currentChar !== " ") {
+	playTypeSound();
+}
 		loveTypedText.textContent = typedSoFar;
 		loveTypedText.appendChild(cursor);
 
