@@ -488,29 +488,45 @@ yesLoveBtn.addEventListener("click", function () {
 	goToPage(2);
 });
 
-function moveNoButtonAway() {
-	var card = screenZero.querySelector(".love_card");
-	var cardRect = card.getBoundingClientRect();
+function moveNoButtonAway(event) {
+	var safePadding = 28;
 
-	var safePadding = 24;
+	noLoveBtn.style.position = "fixed";
+	noLoveBtn.style.zIndex = "999";
+	noLoveBtn.style.transition = "left 0.22s ease, top 0.22s ease, transform 0.18s ease";
 
-	var minPageX = safePadding;
-	var maxPageX = window.innerWidth - noLoveBtn.offsetWidth - safePadding;
-	var minPageY = safePadding;
-	var maxPageY = window.innerHeight - noLoveBtn.offsetHeight - safePadding;
+	var maxX = window.innerWidth - noLoveBtn.offsetWidth - safePadding;
+	var maxY = window.innerHeight - noLoveBtn.offsetHeight - safePadding;
 
-	var randomPageX = minPageX + Math.random() * (maxPageX - minPageX);
-	var randomPageY = minPageY + Math.random() * (maxPageY - minPageY);
+	var mouseX = event ? event.clientX : window.innerWidth / 2;
+	var mouseY = event ? event.clientY : window.innerHeight / 2;
 
-	noLoveBtn.style.left = (randomPageX - cardRect.left) + "px";
-	noLoveBtn.style.top = (randomPageY - cardRect.top) + "px";
+	var randomX = safePadding;
+	var randomY = safePadding;
+
+	for (var i = 0; i < 20; i++) {
+		randomX = safePadding + Math.random() * (maxX - safePadding);
+		randomY = safePadding + Math.random() * (maxY - safePadding);
+
+		var distance = Math.sqrt(
+			Math.pow(randomX - mouseX, 2) +
+			Math.pow(randomY - mouseY, 2)
+		);
+
+		if (distance > 180) {
+			break;
+		}
+	}
+
+	noLoveBtn.style.left = randomX + "px";
+	noLoveBtn.style.top = randomY + "px";
 }
 
 noLoveBtn.addEventListener("mouseenter", moveNoButtonAway);
 noLoveBtn.addEventListener("click", moveNoButtonAway);
 noLoveBtn.addEventListener("touchstart", function (event) {
 	event.preventDefault();
-	moveNoButtonAway();
+	moveNoButtonAway(event.touches[0]);
 });
 			goToPage(1);
 		});
