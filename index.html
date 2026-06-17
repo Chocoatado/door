@@ -44,7 +44,7 @@
 				<div class="birthday_words">
 					<div class="birthday_heart">♡</div>
 					<h1>Happy Birthday<br>to NiuNiu</h1>
-					<p>救我没错！操控我拿起爱心开启大门！</p>
+					<p>救我没错！<br>带我拿到爱心开启大门！</p>
 				</div>
 			</div>
 		</div>
@@ -431,7 +431,7 @@ var screenZero = document.getElementById("screen_zero");
 var loveTypedText = document.getElementById("loveTypedText");
 var loveButtons = document.getElementById("loveButtons");
 
-var loveIntroText = "有一天，我和大门钥匙一不小心一起掉进了黑洞，\n你只能救一个  你的选择是：";
+var loveIntroText = "就在刚刚，我和大门钥匙一不小心一起掉进了你的蛋糕里，\n你只能救一个  你的选择是：";
 
 function typeLoveIntro() {
 	loveButtons.classList.remove("show");
@@ -492,11 +492,15 @@ function moveNoButtonAway() {
 	var card = screenZero.querySelector(".love_card");
 	var cardRect = card.getBoundingClientRect();
 
-	var maxX = window.innerWidth - noLoveBtn.offsetWidth - 40;
-	var maxY = window.innerHeight - noLoveBtn.offsetHeight - 40;
+	var safePadding = 24;
 
-	var randomPageX = 20 + Math.random() * maxX;
-	var randomPageY = 20 + Math.random() * maxY;
+	var minPageX = safePadding;
+	var maxPageX = window.innerWidth - noLoveBtn.offsetWidth - safePadding;
+	var minPageY = safePadding;
+	var maxPageY = window.innerHeight - noLoveBtn.offsetHeight - safePadding;
+
+	var randomPageX = minPageX + Math.random() * (maxPageX - minPageX);
+	var randomPageY = minPageY + Math.random() * (maxPageY - minPageY);
 
 	noLoveBtn.style.left = (randomPageX - cardRect.left) + "px";
 	noLoveBtn.style.top = (randomPageY - cardRect.top) + "px";
