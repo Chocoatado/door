@@ -431,10 +431,9 @@ var screenZero = document.getElementById("screen_zero");
 var loveTypedText = document.getElementById("loveTypedText");
 var loveButtons = document.getElementById("loveButtons");
 
-var loveIntroText = "有一天\n\n我和大门钥匙一不小心一起掉进了黑洞，\n你只能救一个  你的选择是：";
+var loveIntroText = "有一天，我和大门钥匙一不小心一起掉进了黑洞，\n你只能救一个  你的选择是：";
 
 function typeLoveIntro() {
-	loveTypedText.textContent = "";
 	loveButtons.classList.remove("show");
 
 	var cursor = document.createElement("span");
@@ -442,24 +441,29 @@ function typeLoveIntro() {
 	cursor.textContent = "|";
 
 	var index = 0;
+	var typedSoFar = "";
 	var speed = 85;
+
+	loveTypedText.textContent = "";
+	loveTypedText.appendChild(cursor);
 
 	function typeNextLoveChar() {
 		if (index >= loveIntroText.length) {
-			loveTypedText.appendChild(cursor);
+			cursor.style.display = "none";
 
 			setTimeout(function () {
-				cursor.style.display = "none";
 				loveButtons.classList.add("show");
-			}, 500);
+			}, 300);
 
 			return;
 		}
 
 		var currentChar = loveIntroText.charAt(index);
-		loveTypedText.textContent += currentChar;
-		loveTypedText.appendChild(cursor);
+		typedSoFar += currentChar;
 		index++;
+
+		loveTypedText.textContent = typedSoFar;
+		loveTypedText.appendChild(cursor);
 
 		var delay = speed;
 
@@ -468,7 +472,7 @@ function typeLoveIntro() {
 		}
 
 		if (currentChar === "\n") {
-			delay = 350;
+			delay = 300;
 		}
 
 		setTimeout(typeNextLoveChar, delay);
