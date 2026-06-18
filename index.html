@@ -52,7 +52,7 @@
 
 				<div class="birthday_words">
 					<div class="birthday_heart">♡</div>
-					<h1>Happy Birthday<br>to NiuNiu</h1>
+					<h1>Happy Birthday<br>to NiuNiu!</h1>
 					<p>就知道你会救我:p<br>带我拿到爱心开启大门吧~</p>
 				</div>
 			</div>
@@ -447,7 +447,7 @@ function goToPage(pageNumber) {
 
 			setTimeout(function () {
 				isPageTurning = false;
-			}, 300);
+			}, 100);
 		}, 80);
 	}, 500);
 }
@@ -490,8 +490,42 @@ var loveButtons = document.getElementById("loveButtons");
 var startOverlay = document.getElementById("startOverlay");
 
 var loveIntroText = "OOPS！就在刚刚，我和大门钥匙一不小心一起掉进了你的蛋糕里，\n你只能救一个  你的选择是：";
-var typeSound = new Audio("audio/type.mp3?v=1");
-typeSound.volume = 0.28;
+var typeSoundUrl = "audio/type.mp3?v=1";
+var typeSoundPool = [];
+var typeSoundPoolIndex = 0;
+
+function prepareTypeSoundPool() {
+	if (typeSoundPool.length > 0) {
+		return;
+	}
+
+	for (var i = 0; i < 8; i++) {
+		var sound = new Audio(typeSoundUrl);
+		sound.preload = "auto";
+		sound.volume = 0.28;
+		sound.load();
+		typeSoundPool.push(sound);
+	}
+}
+
+function playTypeSound() {
+	if (typeSoundPool.length === 0) {
+		prepareTypeSoundPool();
+	}
+
+	var sound = typeSoundPool[typeSoundPoolIndex];
+	typeSoundPoolIndex = (typeSoundPoolIndex + 1) % typeSoundPool.length;
+
+	sound.pause();
+	sound.currentTime = 0;
+	sound.volume = 0.28;
+
+	sound.play().catch(function () {
+		// 浏览器如果拦截或音频还没准备好，就静默失败
+	});
+}
+
+window.playTypeSound = playTypeSound;
 
 var clickSound = new Audio("audio/click.mp3?v=1");
 clickSound.volume = 0.35;
@@ -517,20 +551,20 @@ function playClickSound() {
 	});
 }
 			
-function playTypeSound() {
-	var sound = typeSound.cloneNode();
-	sound.volume = 0.28;
-	sound.play().catch(function () {
-		// 浏览器如果拦截自动播放，就先静默失败
-	});
-}
-
-window.playTypeSound = playTypeSound;
 function playLetterTypeSound() {
-	var sound = typeSound.cloneNode();
+	if (typeSoundPool.length === 0) {
+		prepareTypeSoundPool();
+	}
+
+	var sound = typeSoundPool[typeSoundPoolIndex];
+	typeSoundPoolIndex = (typeSoundPoolIndex + 1) % typeSoundPool.length;
+
+	sound.pause();
+	sound.currentTime = 0;
 	sound.volume = 0.06;
+
 	sound.play().catch(function () {
-		// 浏览器如果拦截自动播放，就先静默失败
+		// 浏览器如果拦截或音频还没准备好，就静默失败
 	});
 }
 
