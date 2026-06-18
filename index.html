@@ -536,11 +536,14 @@ loveTypedText.appendChild(cursor);
 
 startOverlay.addEventListener("click", function () {
 	playClickSound();
-	startOverlay.classList.add("hide");
 
 	setTimeout(function () {
-		typeLoveIntro();
-	}, 500);
+		startOverlay.classList.add("hide");
+
+		setTimeout(function () {
+			typeLoveIntro();
+		}, 500);
+	}, 220);
 });
 
 yesLoveBtn.addEventListener("click", function () {
@@ -548,7 +551,7 @@ yesLoveBtn.addEventListener("click", function () {
 
 	setTimeout(function () {
 		goToPage(2);
-	}, 180);
+	}, 220);
 });
 
 var noButtonHasMovedToBody = false;
