@@ -494,6 +494,9 @@ function playLetterTypeSound() {
 		// 浏览器如果拦截自动播放，就先静默失败
 	});
 }
+
+var loveTypingTimer = null;
+
 function typeLoveIntro() {
 	loveButtons.classList.remove("show");
 
@@ -540,10 +543,17 @@ loveTypedText.appendChild(cursor);
 			delay = 300;
 		}
 
-		setTimeout(typeNextLoveChar, delay);
+		loveTypingTimer = setTimeout(typeNextLoveChar, delay);
 	}
 
 	typeNextLoveChar();
+}
+
+function showFullLoveIntro() {
+	clearTimeout(loveTypingTimer);
+
+	loveTypedText.textContent = loveIntroText;
+	loveButtons.classList.add("show");
 }
 
 startOverlay.addEventListener("click", function () {
@@ -557,7 +567,13 @@ startOverlay.addEventListener("click", function () {
 		}, 500);
 	}, 220);
 });
+screenZero.addEventListener("dblclick", function (event) {
+	if (event.target === yesLoveBtn || event.target === noLoveBtn) {
+		return;
+	}
 
+	showFullLoveIntro();
+});
 yesLoveBtn.addEventListener("click", function () {
 	playClickSound();
 
@@ -706,7 +722,7 @@ window.iHeartYou = function(){
 
 	var index = 0;
 	var secondTextTimer = null;
-	var SPEED = 95;
+	var SPEED = 125;
 
 	function typeSecondPageText() {
 		if (index >= chars.length) {
