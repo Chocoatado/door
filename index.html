@@ -564,8 +564,13 @@ function setupLetterPeepClick(peepElement) {
 
 		peepElement.peepBackTimer = setTimeout(function () {
 			peepElement.src = "assets/peep.png?v=1";
-		}, 280);
+		}, 220);
 	});
+
+	peepElement.addEventListener("dblclick", function (event) {
+	event.preventDefault();
+	event.stopPropagation();
+});
 }
 
 setupLetterPeepClick(letterPeepLeft);
