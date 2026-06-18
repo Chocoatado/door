@@ -442,13 +442,13 @@ function goToPage(pageNumber) {
 
 		updatePageButtons();
 
-		setTimeout(function () {
-			pageCurtain.classList.remove("show");
+requestAnimationFrame(function () {
+	pageCurtain.classList.remove("show");
+});
 
-			setTimeout(function () {
-				isPageTurning = false;
-			}, 100);
-		}, 80);
+setTimeout(function () {
+	isPageTurning = false;
+}, 650);
 	}, 500);
 }
 			
