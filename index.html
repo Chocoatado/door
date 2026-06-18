@@ -441,7 +441,7 @@ function goToPage(pageNumber) {
 		}, 80);
 	}, 500);
 }
-
+window.goToPage = goToPage;
 prevPage.addEventListener("click", function () {
 	playClickSound();
 
@@ -782,9 +782,13 @@ index++;
 
 	typeSecondPageText();
 
-	setTimeout(function(){
+setTimeout(function(){
+	if (window.goToPage) {
+		window.goToPage(4);
+	} else {
 		document.getElementById("whole_container").style.top = "-300%";
-	}, 10000);
+	}
+}, 10000);
 
 	setTimeout(function(){
 		yourMessage.focus();
