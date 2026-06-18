@@ -303,6 +303,7 @@ var currentPage = 1;
 var totalPages = 4;
 var wholeContainer = document.getElementById("whole_container");
 var pageCurtain = document.getElementById("pageCurtain");
+var isPageTurning = false;
 var prevPage = document.getElementById("prevPage");
 var nextPage = document.getElementById("nextPage");
 var introCanvas = document.getElementById("canvas_intro");
@@ -411,6 +412,10 @@ function syncCurrentPageFromPosition() {
 }
 
 function goToPage(pageNumber) {
+	if (isPageTurning) {
+		return;
+	}
+
 	if (pageNumber < 1) {
 		pageNumber = 1;
 	}
@@ -423,6 +428,7 @@ function goToPage(pageNumber) {
 		return;
 	}
 
+	isPageTurning = true;
 	pageCurtain.classList.add("show");
 
 	setTimeout(function () {
@@ -438,9 +444,14 @@ function goToPage(pageNumber) {
 
 		setTimeout(function () {
 			pageCurtain.classList.remove("show");
+
+			setTimeout(function () {
+				isPageTurning = false;
+			}, 500);
 		}, 80);
 	}, 500);
 }
+			
 window.goToPage = goToPage;
 prevPage.addEventListener("click", function () {
 	playClickSound();
