@@ -21,8 +21,6 @@
 
 <body>
 
-<body>
-
 	<div id="loading"><div>LOADING</div></div>
 
 	<div id="startOverlay" class="start_overlay">
@@ -487,6 +485,8 @@ function playTypeSound() {
 		// 浏览器如果拦截自动播放，就先静默失败
 	});
 }
+
+window.playTypeSound = playTypeSound;
 function playLetterTypeSound() {
 	var sound = typeSound.cloneNode();
 	sound.volume = 0.06;
@@ -565,8 +565,6 @@ yesLoveBtn.addEventListener("click", function () {
 		goToPage(2);
 	}, 260);
 });
-
-var noButtonHasMovedToBody = false;
 
 var noButtonHasMovedToBody = false;
 
@@ -718,8 +716,8 @@ window.iHeartYou = function(){
 
 chars[index].style.visibility = "visible";
 
-if (chars[index].textContent !== "\n" && chars[index].textContent !== " ") {
-	playTypeSound();
+if (chars[index].textContent !== " " && window.playTypeSound) {
+	window.playTypeSound();
 }
 
 if (chars[index].nextSibling) {
