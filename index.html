@@ -719,7 +719,8 @@ chars[index].style.visibility = "visible";
 if (
 	window.playTypeSound &&
 	chars[index].textContent !== "\n" &&
-	chars[index].textContent !== " "
+	chars[index].textContent !== " " &&
+	"，。！？、；：,.!?;:~～♡<>".indexOf(chars[index].textContent) === -1
 ) {
 	window.playTypeSound();
 }
