@@ -492,7 +492,7 @@ function playTypeSound() {
 }
 function playLetterTypeSound() {
 	var sound = typeSound.cloneNode();
-	sound.volume = 0.12;
+	sound.volume = 0.06;
 	sound.play().catch(function () {
 		// 浏览器如果拦截自动播放，就先静默失败
 	});
