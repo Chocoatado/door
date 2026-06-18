@@ -937,3 +937,46 @@ textarea {
 	white-space: pre !important;
 	text-align: center !important;
 }
+
+
+.start_overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #FDEBEB;
+	z-index: 3500;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition: opacity 0.55s ease, visibility 0s linear 0.55s;
+}
+
+.start_overlay.hide {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.start_card {
+	text-align: center;
+	cursor: pointer;
+	color: #787785;
+}
+
+.start_cake {
+	font-size: 86px;
+	line-height: 1;
+	margin-bottom: 24px;
+	animation: heartbeat 1.3s infinite;
+}
+
+.start_text {
+	font-size: 24px;
+	letter-spacing: 1.2px;
+	color: #787785;
+}
