@@ -37,6 +37,7 @@ function Level(config,isIntro){
 	self.key = new DoorKey(config.key, self);
 	self.door = new Door(config.door, self);
 	self.clock = new Clock(config.countdown, self);
+	self.clockStartDelay = 35;
 
 	self.canvas = config.canvas;
 	self.ctx = self.canvas.getContext('2d');
@@ -65,10 +66,14 @@ function Level(config,isIntro){
 			STAGE = 1;
 		}else{
 			if(output=="END_LEVEL"){
-				self.ctx.clearRect(0,self.height,self.canvas.width,80);
-			}else{
-				self.clock.update();
-			}
+	self.ctx.clearRect(0,self.height,self.canvas.width,80);
+}else{
+	if (self.clockStartDelay > 0) {
+		self.clockStartDelay--;
+	} else {
+		self.clock.update();
+	}
+}
 			self.recordFrame();
 		}
 
