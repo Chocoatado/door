@@ -1006,3 +1006,10 @@ textarea {
 	visibility: visible;
 	transition: opacity 0.5s ease;
 }
+
+#letterPeepLeft,
+#letterPeepRight {
+	pointer-events: auto !important;
+	cursor: pointer !important;
+	z-index: 2600 !important;
+}
