@@ -209,9 +209,6 @@ var currentChar = letterText.charAt(index);
 typedLetter.textContent += currentChar;
 index++;
 
-if (currentChar !== "\n" && currentChar !== " ") {
-	playLetterTypeSound();
-}
 
 var delay = TYPE_SPEED;
 
@@ -719,15 +716,19 @@ window.iHeartYou = function(){
 			return;
 		}
 
-		chars[index].style.visibility = "visible";
+chars[index].style.visibility = "visible";
 
-		if (chars[index].nextSibling) {
-			vtext.insertBefore(cursor, chars[index].nextSibling);
-		} else {
-			vtext.appendChild(cursor);
-		}
+if (chars[index].textContent !== "\n" && chars[index].textContent !== " ") {
+	playTypeSound();
+}
 
-		index++;
+if (chars[index].nextSibling) {
+	vtext.insertBefore(cursor, chars[index].nextSibling);
+} else {
+	vtext.appendChild(cursor);
+}
+
+index++;
 
 		secondTextTimer = setTimeout(typeSecondPageText, SPEED);
 	}
