@@ -259,6 +259,8 @@ function fadeBgmVolume(targetVolume, duration) {
 }
 
 envelopeBtn.addEventListener("click", function () {
+	playClickSound();
+
 	finaleShown = false;
 	finaleOverlay.classList.remove("show");
 
@@ -273,6 +275,8 @@ envelopeBtn.addEventListener("click", function () {
 });
 
 closeLetter.addEventListener("click", function () {
+	playClickSound();
+
 	letterModal.classList.remove("show");
 	clearTimeout(typingTimer);
 
@@ -551,7 +555,7 @@ yesLoveBtn.addEventListener("click", function () {
 
 	setTimeout(function () {
 		goToPage(2);
-	}, 220);
+	}, 240);
 });
 
 var noButtonHasMovedToBody = false;
