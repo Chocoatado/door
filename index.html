@@ -448,6 +448,7 @@ var noLoveBtn = document.getElementById("noLoveBtn");
 var screenZero = document.getElementById("screen_zero");
 var loveTypedText = document.getElementById("loveTypedText");
 var loveButtons = document.getElementById("loveButtons");
+var startOverlay = document.getElementById("startOverlay");
 
 var loveIntroText = "OOPS！就在刚刚，我和大门钥匙一不小心一起掉进了你的蛋糕里，\n你只能救一个  你的选择是：";
 var typeSound = new Audio("audio/type.mp3?v=1");
@@ -512,9 +513,14 @@ loveTypedText.appendChild(cursor);
 	typeNextLoveChar();
 }
 
-setTimeout(function () {
-	typeLoveIntro();
-}, 2200);
+startOverlay.addEventListener("click", function () {
+	startOverlay.classList.add("hide");
+
+	setTimeout(function () {
+		typeLoveIntro();
+	}, 500);
+});
+
 yesLoveBtn.addEventListener("click", function () {
 	goToPage(2);
 });
