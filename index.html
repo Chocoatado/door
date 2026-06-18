@@ -346,9 +346,10 @@ var clickY = (event.clientY - rect.top) * (introCanvas.height / rect.height);
 	var dy = clickY - playerScreenY;
 	var distance = Math.sqrt(dx * dx + dy * dy);
 
-	if (distance < 95) {
-		triggerIntroPeepSway();
-	}
+if (distance < 95) {
+	playAngrySound();
+	triggerIntroPeepSway();
+}
 });
 
 function restartFirstPageGame() {
@@ -469,6 +470,19 @@ typeSound.volume = 0.28;
 
 var clickSound = new Audio("audio/click.mp3?v=1");
 clickSound.volume = 0.35;
+
+var angrySound = new Audio("audio/angry.mp3?v=1");
+angrySound.volume = 0.35;
+
+function playAngrySound() {
+	var sound = angrySound.cloneNode();
+	sound.volume = 0.35;
+	sound.play().catch(function () {
+		// 如果浏览器拦截，就静默失败
+	});
+}
+
+window.playAngrySound = playAngrySound;
 
 function playClickSound() {
 	var sound = clickSound.cloneNode();
@@ -823,15 +837,19 @@ thirdPeepCanvas.addEventListener("click", function(event) {
 	var dy = clickWorldY - thirdPeep.y;
 	var distance = Math.sqrt(dx * dx + dy * dy);
 
-	if (distance < 110) {
-		if (typeof thirdPeep.cuteSway === "function") {
-			thirdPeep.cuteSway();
-		}
-
-		if (typeof thirdPeep.showPeep2Once === "function") {
-			thirdPeep.showPeep2Once();
-		}
+if (distance < 110) {
+	if (window.playAngrySound) {
+		window.playAngrySound();
 	}
+
+	if (typeof thirdPeep.cuteSway === "function") {
+		thirdPeep.cuteSway();
+	}
+
+	if (typeof thirdPeep.showPeep2Once === "function") {
+		thirdPeep.showPeep2Once();
+	}
+}
 });
 
 var thirdPeepFrameCount = 0;
