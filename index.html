@@ -424,13 +424,21 @@ function goToPage(pageNumber) {
 	updatePageButtons();
 }
 
-			prevPage.addEventListener("click", function () {
-				goToPage(currentPage - 1);
-			});
+prevPage.addEventListener("click", function () {
+	playClickSound();
 
-			nextPage.addEventListener("click", function () {
-				goToPage(currentPage + 1);
-			});
+	setTimeout(function () {
+		goToPage(currentPage - 1);
+	}, 120);
+});
+
+nextPage.addEventListener("click", function () {
+	playClickSound();
+
+	setTimeout(function () {
+		goToPage(currentPage + 1);
+	}, 120);
+});
 
 			document.addEventListener("keydown", function (event) {
 				if (event.key === "PageUp") {
@@ -456,6 +464,17 @@ var loveIntroText = "OOPS！就在刚刚，我和大门钥匙一不小心一起�
 var typeSound = new Audio("audio/type.mp3?v=1");
 typeSound.volume = 0.28;
 
+var clickSound = new Audio("audio/click.mp3?v=1");
+clickSound.volume = 0.35;
+
+function playClickSound() {
+	var sound = clickSound.cloneNode();
+	sound.volume = 0.35;
+	sound.play().catch(function () {
+		// 如果浏览器拦截，就静默失败
+	});
+}
+			
 function playTypeSound() {
 	var sound = typeSound.cloneNode();
 	sound.volume = 0.28;
@@ -516,6 +535,7 @@ loveTypedText.appendChild(cursor);
 }
 
 startOverlay.addEventListener("click", function () {
+	playClickSound();
 	startOverlay.classList.add("hide");
 
 	setTimeout(function () {
@@ -524,7 +544,11 @@ startOverlay.addEventListener("click", function () {
 });
 
 yesLoveBtn.addEventListener("click", function () {
-	goToPage(2);
+	playClickSound();
+
+	setTimeout(function () {
+		goToPage(2);
+	}, 180);
 });
 
 var noButtonHasMovedToBody = false;
