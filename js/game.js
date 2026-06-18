@@ -383,7 +383,7 @@ function Door(config,level){
 					window.level = null;
 					setTimeout(function(){
 						window.level = lvl;
-					},450);
+					},550);
 
 					return "END_LEVEL";
 				}else{
