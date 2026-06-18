@@ -969,10 +969,15 @@ textarea {
 }
 
 .start_cake {
-	font-size: 86px;
-	line-height: 1;
 	margin-bottom: 24px;
 	animation: heartbeat 1.3s infinite;
+}
+
+.start_cake img {
+	width: 120px;
+	height: auto;
+	display: block;
+	margin: 0 auto;
 }
 
 .start_text {
