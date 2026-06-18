@@ -152,6 +152,9 @@
 			var letterModal = document.getElementById("letterModal");
 			var closeLetter = document.getElementById("closeLetter");
 			var typedLetter = document.getElementById("typedLetter");
+			var letterPeepLeft = document.getElementById("letterPeepLeft");
+			var letterPeepRight = document.getElementById("letterPeepRight");
+					
 var typingTimer = null;
 var finaleOverlay = document.getElementById("finaleOverlay");
 var finaleLottie = document.getElementById("finaleLottie");
@@ -542,7 +545,31 @@ function playAngrySound() {
 }
 
 window.playAngrySound = playAngrySound;
+function setupLetterPeepClick(peepElement) {
+	if (!peepElement) {
+		return;
+	}
 
+	peepElement.addEventListener("click", function (event) {
+		event.stopPropagation();
+
+		if (window.playAngrySound) {
+			window.playAngrySound();
+		}
+
+		peepElement.src = "assets/peep2.png?v=1";
+
+		clearTimeout(peepElement.peepBackTimer);
+
+		peepElement.peepBackTimer = setTimeout(function () {
+			peepElement.src = "assets/peep.png?v=1";
+		}, 900);
+	});
+}
+
+setupLetterPeepClick(letterPeepLeft);
+setupLetterPeepClick(letterPeepRight);
+			
 function playClickSound() {
 	var sound = clickSound.cloneNode();
 	sound.volume = 0.35;
