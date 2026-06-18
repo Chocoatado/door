@@ -205,11 +205,15 @@ if (index >= letterText.length) {
 	return;
 }
 
-		var currentChar = letterText.charAt(index);
-		typedLetter.textContent += currentChar;
-		index++;
+var currentChar = letterText.charAt(index);
+typedLetter.textContent += currentChar;
+index++;
 
-		var delay = TYPE_SPEED;
+if (currentChar !== "\n" && currentChar !== " ") {
+	playLetterTypeSound();
+}
+
+var delay = TYPE_SPEED;
 
 		if ("，。！？、；：".indexOf(currentChar) !== -1) {
 			delay = 260;
@@ -486,6 +490,13 @@ function playTypeSound() {
 		// 浏览器如果拦截自动播放，就先静默失败
 	});
 }
+function playLetterTypeSound() {
+	var sound = typeSound.cloneNode();
+	sound.volume = 0.12;
+	sound.play().catch(function () {
+		// 浏览器如果拦截自动播放，就先静默失败
+	});
+}
 function typeLoveIntro() {
 	loveButtons.classList.remove("show");
 
@@ -555,7 +566,7 @@ yesLoveBtn.addEventListener("click", function () {
 
 	setTimeout(function () {
 		goToPage(2);
-	}, 240);
+	}, 260);
 });
 
 var noButtonHasMovedToBody = false;
