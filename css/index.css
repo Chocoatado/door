@@ -985,3 +985,24 @@ textarea {
 	letter-spacing: 1.2px;
 	color: #787785;
 }
+
+
+.page_curtain {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #FDEBEB;
+	z-index: 3200;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+}
+
+.page_curtain.show {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.5s ease;
+}
