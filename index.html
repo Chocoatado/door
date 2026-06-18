@@ -302,6 +302,7 @@ letterModal.addEventListener("dblclick", function () {
 var currentPage = 1;
 var totalPages = 4;
 var wholeContainer = document.getElementById("whole_container");
+var pageCurtain = document.getElementById("pageCurtain");
 var prevPage = document.getElementById("prevPage");
 var nextPage = document.getElementById("nextPage");
 var introCanvas = document.getElementById("canvas_intro");
@@ -418,15 +419,27 @@ function goToPage(pageNumber) {
 		pageNumber = totalPages;
 	}
 
-	currentPage = pageNumber;
-
-	if (currentPage === 2) {
-		restartFirstPageGame();
+	if (pageNumber === currentPage) {
+		return;
 	}
 
-	wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
+	pageCurtain.classList.add("show");
 
-	updatePageButtons();
+	setTimeout(function () {
+		currentPage = pageNumber;
+
+		if (currentPage === 2) {
+			restartFirstPageGame();
+		}
+
+		wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
+
+		updatePageButtons();
+
+		setTimeout(function () {
+			pageCurtain.classList.remove("show");
+		}, 80);
+	}, 500);
 }
 
 prevPage.addEventListener("click", function () {
@@ -594,7 +607,7 @@ yesLoveBtn.addEventListener("click", function () {
 
 	setTimeout(function () {
 		goToPage(2);
-	}, 650);
+	}, 700);
 });
 
 var noButtonHasMovedToBody = false;
