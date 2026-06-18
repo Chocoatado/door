@@ -563,7 +563,7 @@ yesLoveBtn.addEventListener("click", function () {
 
 	setTimeout(function () {
 		goToPage(2);
-	}, 260);
+	}, 300);
 });
 
 var noButtonHasMovedToBody = false;
@@ -716,7 +716,11 @@ window.iHeartYou = function(){
 
 chars[index].style.visibility = "visible";
 
-if (chars[index].textContent !== " " && window.playTypeSound) {
+if (
+	window.playTypeSound &&
+	chars[index].textContent !== "\n" &&
+	chars[index].textContent !== " "
+) {
 	window.playTypeSound();
 }
 
