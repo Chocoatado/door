@@ -369,7 +369,11 @@ function Door(config,level){
 			if(distance<6){
 				if(level.isIntro){
 					
-					document.getElementById("whole_container").style.top = "-200%";
+					if (window.goToPage) {
+	window.goToPage(3);
+} else {
+	document.getElementById("whole_container").style.top = "-200%";
+}
 
 					createjs.Sound.play("ding");
 
