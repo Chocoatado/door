@@ -330,7 +330,9 @@ var nextPage = document.getElementById("nextPage");
 var introCanvas = document.getElementById("canvas_intro");
 var secondPageEntrance = document.getElementById("secondPageEntrance");
 var secondEntranceConfetti = document.getElementById("secondEntranceConfetti");
-var secondEntranceTimer = null;
+var secondEntranceMoveTimer = null;
+var secondEntranceHideTimer = null;
+var secondEntranceCleanTimer = null;
 
 function triggerIntroPeepSway() {
 	if (!window.level || !window.level.player) {
@@ -384,7 +386,9 @@ function showSecondPageEntrance() {
 		return;
 	}
 
-	clearTimeout(secondEntranceTimer);
+	clearTimeout(secondEntranceMoveTimer);
+	clearTimeout(secondEntranceHideTimer);
+	clearTimeout(secondEntranceCleanTimer);
 
 	secondPageEntrance.classList.remove("show");
 	secondPageEntrance.classList.remove("move");
@@ -396,23 +400,26 @@ function showSecondPageEntrance() {
 	playEntranceSound();
 
 	if (secondEntranceConfetti) {
-	secondEntranceConfetti.stop();
-	secondEntranceConfetti.play();
-}
+		secondEntranceConfetti.stop();
+		secondEntranceConfetti.play();
+	}
 
-secondEntranceTimer = setTimeout(function () {
-	secondPageEntrance.classList.add("move");
-}, 1200);
+	var entranceHoldTime = 1200;
+	var entranceMoveTime = 2100;
 
-	secondEntranceTimer = setTimeout(function () {
+	secondEntranceMoveTimer = setTimeout(function () {
+		secondPageEntrance.classList.add("move");
+	}, entranceHoldTime);
+
+	secondEntranceHideTimer = setTimeout(function () {
 		secondPageEntrance.classList.add("hide");
 
-		setTimeout(function () {
+		secondEntranceCleanTimer = setTimeout(function () {
 			secondPageEntrance.classList.remove("show");
 			secondPageEntrance.classList.remove("move");
 			secondPageEntrance.classList.remove("hide");
 		}, 260);
-	}, 3950);
+	}, entranceHoldTime + entranceMoveTime);
 }
 			
 function restartFirstPageGame() {
