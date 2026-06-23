@@ -149,22 +149,6 @@
 
 	</div>
 </div>
-<div id="floatingHeartsOverlay" class="floating_hearts_overlay">
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-	<span>♡</span>
-</div>
-
-	
 <div id="finaleOverlay">
 	<lottie-player
 		id="finaleLottie"
@@ -192,23 +176,8 @@
 var typingTimer = null;
 var finaleOverlay = document.getElementById("finaleOverlay");
 var finaleLottie = document.getElementById("finaleLottie");
-var floatingHeartsOverlay = document.getElementById("floatingHeartsOverlay");
 var finaleShown = false;
-var letterHasFinished = false;
-var floatingHeartsStarted = false;
 
-function startFloatingHearts() {
-	if (floatingHeartsStarted) {
-		return;
-	}
-
-	floatingHeartsStarted = true;
-
-	if (floatingHeartsOverlay) {
-		floatingHeartsOverlay.classList.add("show");
-	}
-}
-			
 function showFinale() {
 	if (finaleShown) {
 		return;
@@ -248,8 +217,6 @@ function startTypingLetter() {
 
 function typeNextChar() {
 if (index >= letterText.length) {
-	letterHasFinished = true;
-
 	startThirdPagePeep();
 
 	setTimeout(function () {
@@ -280,6 +247,15 @@ var delay = TYPE_SPEED;
 }
 
 function showFullLetter() {
+	clearTimeout(typingTimer);
+	typedLetter.textContent = letterText;
+
+	startThirdPagePeep();
+
+	setTimeout(function () {
+		showFinale();
+	}, 500);
+}
 
 function fadeBgmVolume(targetVolume, duration) {
 	if (!window.BIRTHDAY_BGM) {
@@ -336,10 +312,6 @@ letterModal.addEventListener("click", function (event) {
 
 		// 点背景关掉信后，音乐稍微恢复
 		fadeBgmVolume(0.16, 1200);
-
-		if (letterHasFinished) {
-			startFloatingHearts();
-		}
 	}
 });
 letterModal.addEventListener("dblclick", function () {
