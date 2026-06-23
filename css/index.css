@@ -964,7 +964,7 @@ textarea {
 
 .start_card {
 	text-align: center;
-	cursor: pointer;
+	cursor: default;
 	color: #787785;
 }
 
@@ -1012,4 +1012,8 @@ textarea {
 	pointer-events: auto !important;
 	cursor: pointer !important;
 	z-index: 2600 !important;
+}
+
+.start_cake {
+	cursor: pointer;
 }
