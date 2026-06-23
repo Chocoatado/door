@@ -323,6 +323,7 @@ var prevPage = document.getElementById("prevPage");
 var nextPage = document.getElementById("nextPage");
 var introCanvas = document.getElementById("canvas_intro");
 var secondPageEntrance = document.getElementById("secondPageEntrance");
+var secondEntranceConfetti = document.getElementById("secondEntranceConfetti");
 var secondEntranceTimer = null;
 
 function triggerIntroPeepSway() {
@@ -387,6 +388,11 @@ function showSecondPageEntrance() {
 
 	secondPageEntrance.classList.add("show");
 	playEntranceSound();
+
+	if (secondEntranceConfetti) {
+	secondEntranceConfetti.stop();
+	secondEntranceConfetti.play();
+}
 
 secondEntranceTimer = setTimeout(function () {
 	secondPageEntrance.classList.add("move");
