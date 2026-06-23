@@ -1054,6 +1054,7 @@ textarea {
 	transform-origin: center bottom;
 	z-index: 2;
 	animation: entrancePeepSway 0.75s ease-in-out infinite;
+	will-change: transform, left, top, width;
 }
 
 .second_page_entrance.move #secondEntrancePeep {
