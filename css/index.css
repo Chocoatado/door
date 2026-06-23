@@ -1114,11 +1114,11 @@ textarea {
 		transform: translate(-50%, -50%);
 	}
 
-	100% {
-		left: calc(50% - 225px);
-		top: calc(50% - 120px);
-		width: 75px;
-		transform: translate(-50%, -50%);
+100% {
+	left: var(--entrance-target-left, calc(50% - 225px));
+	top: var(--entrance-target-top, calc(50% - 120px));
+	width: var(--entrance-target-width, 75px);
+	transform: translate(-50%, -50%);
 	}
 }
 #secondEntranceConfetti {
