@@ -373,6 +373,7 @@ function showSecondPageEntrance() {
 
 	secondPageEntrance.classList.remove("show");
 	secondPageEntrance.classList.remove("move");
+	secondPageEntrance.classList.remove("hide");
 
 	void secondPageEntrance.offsetWidth;
 
@@ -383,9 +384,14 @@ function showSecondPageEntrance() {
 	}, 650);
 
 	secondEntranceTimer = setTimeout(function () {
-		secondPageEntrance.classList.remove("show");
-		secondPageEntrance.classList.remove("move");
-	}, 3100);
+		secondPageEntrance.classList.add("hide");
+
+		setTimeout(function () {
+			secondPageEntrance.classList.remove("show");
+			secondPageEntrance.classList.remove("move");
+			secondPageEntrance.classList.remove("hide");
+		}, 260);
+	}, 2850);
 }
 			
 function restartFirstPageGame() {
@@ -465,15 +471,17 @@ function goToPage(pageNumber) {
 	pageCurtain.classList.add("show");
 
 	setTimeout(function () {
-		currentPage = pageNumber;
+currentPage = pageNumber;
 
-		if (currentPage === 2) {
+if (currentPage === 2) {
 	restartFirstPageGame();
-	showSecondPageEntrance();
 }
 
-		wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
+wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
 
+if (currentPage === 2) {
+	showSecondPageEntrance();
+}
 		updatePageButtons();
 
 requestAnimationFrame(function () {
