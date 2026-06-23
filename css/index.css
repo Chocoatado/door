@@ -1052,11 +1052,10 @@ textarea {
 	height: auto;
 	transform: translate(-50%, -50%) rotate(-4deg);
 	transform-origin: center bottom;
-	animation: entrancePeepSway 0.9s ease-in-out infinite;
 }
 
 .second_page_entrance.move #secondEntrancePeep {
-	animation: entrancePeepMove 2.1s ease-in-out forwards;
+	animation: entrancePeepMove 2.75s ease-in-out forwards;
 }
 
 @keyframes entrancePeepSway {
@@ -1079,11 +1078,18 @@ textarea {
 		transform: translate(-50%, -50%) rotate(-4deg) scale(1);
 	}
 
-	30% {
+	12% {
 		left: 50%;
 		top: 50%;
 		width: 260px;
 		transform: translate(-50%, -50%) rotate(4deg) scale(1.03);
+	}
+
+	24% {
+		left: 50%;
+		top: 50%;
+		width: 260px;
+		transform: translate(-50%, -50%) rotate(-4deg) scale(1);
 	}
 
 	100% {
