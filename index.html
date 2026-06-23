@@ -5,6 +5,10 @@
 	<title>Happy Birthday to Niuniu🎂</title>
 	<meta name="description" content="A Birthday Surprise for Niuniu."/>
 	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="preload" as="image" href="assets/peep.png?v=1">
+<link rel="preload" as="image" href="assets/peep2.png?v=1">
+<link rel="preload" as="fetch" href="assets/entrance_confetti.json" crossorigin="anonymous">
+<link rel="preload" as="audio" href="audio/entrance.mp3?v=1">
 
 	<meta itemprop="name" content="Happy Birthday to Niuniu">
 	<meta itemprop="description" content="A Birthday Surprise for Niuniu.">
@@ -734,6 +738,10 @@ startCake.addEventListener("click", function (event) {
 
 	playClickSound();
 
+if (secondEntranceConfetti) {
+	secondEntranceConfetti.load("assets/entrance_confetti.json");
+}
+	
 	setTimeout(function () {
 		startOverlay.classList.add("hide");
 
