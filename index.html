@@ -378,6 +378,7 @@ function showSecondPageEntrance() {
 	void secondPageEntrance.offsetWidth;
 
 	secondPageEntrance.classList.add("show");
+	playEntranceSound();
 
 secondEntranceTimer = setTimeout(function () {
 	secondPageEntrance.classList.add("move");
@@ -576,6 +577,17 @@ clickSound.volume = 0.35;
 var angrySound = new Audio("audio/angry.mp3?v=1");
 angrySound.volume = 0.35;
 
+var entranceSound = new Audio("audio/entrance.mp3?v=1");
+entranceSound.volume = 0.32;
+
+function playEntranceSound() {
+	var sound = entranceSound.cloneNode();
+	sound.volume = 0.32;
+	sound.play().catch(function () {
+		// 如果浏览器拦截，就静默失败
+	});
+}
+			
 function playAngrySound() {
 	var sound = angrySound.cloneNode();
 	sound.volume = 0.35;
