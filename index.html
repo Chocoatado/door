@@ -381,6 +381,33 @@ if (distance < 95) {
 }
 });
 
+function updateSecondEntranceTarget() {
+	if (!secondPageEntrance || !introCanvas || !window.level || !window.level.player) {
+		return;
+	}
+
+	var rect = introCanvas.getBoundingClientRect();
+	var player = window.level.player;
+
+	var introScale = 1.5;
+
+	var playerScreenX = player.x * introScale - introCanvas.width * 0.25;
+	var playerScreenY = player.y * introScale - introCanvas.height * 0.25;
+
+	var targetLeft = rect.left + playerScreenX * (rect.width / introCanvas.width);
+	var targetTop = rect.top + playerScreenY * (rect.height / introCanvas.height) - 75;
+
+	var targetWidth = 75 * (rect.width / introCanvas.width);
+
+	secondPageEntrance.style.setProperty("--entrance-target-left", targetLeft + "px");
+	secondPageEntrance.style.setProperty("--entrance-target-top", targetTop + "px");
+	secondPageEntrance.style.setProperty("--entrance-target-width", targetWidth + "px");
+}
+
+window.addEventListener("resize", function () {
+	updateSecondEntranceTarget();
+});
+			
 function showSecondPageEntrance() {
 	if (!secondPageEntrance) {
 		return;
@@ -394,10 +421,12 @@ function showSecondPageEntrance() {
 	secondPageEntrance.classList.remove("move");
 	secondPageEntrance.classList.remove("hide");
 
-	void secondPageEntrance.offsetWidth;
+updateSecondEntranceTarget();
 
-	secondPageEntrance.classList.add("show");
-	playEntranceSound();
+void secondPageEntrance.offsetWidth;
+
+secondPageEntrance.classList.add("show");
+playEntranceSound();
 
 	if (secondEntranceConfetti) {
 		secondEntranceConfetti.stop();
