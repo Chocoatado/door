@@ -1044,32 +1044,59 @@ textarea {
 	transition: opacity 0.25s ease, visibility 0s linear 0.25s;
 }
 
-#secondEntrancePeep {
+#secondEntranceConfetti {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 520px !important;
+	height: 520px !important;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	pointer-events: none;
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.18s ease, visibility 0s linear 0.18s;
+}
+
+.second_page_entrance.move #secondEntranceConfetti {
+	opacity: 0;
+	visibility: hidden;
+}
+
+#secondEntrancePeepWrap {
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	width: 260px;
 	height: auto;
-	transform: translate(-50%, -50%) rotate(-4deg);
+	transform: translate(-50%, -50%);
 	transform-origin: center bottom;
 	z-index: 2;
-	animation: entrancePeepSway 0.75s ease-in-out infinite;
-	will-change: transform, left, top, width;
+	will-change: left, top, width, transform;
 }
 
-.second_page_entrance.move #secondEntrancePeep {
-	animation: entrancePeepMove 2.75s ease-in-out forwards;
+#secondEntrancePeep {
+	display: block;
+	width: 100%;
+	height: auto;
+	transform-origin: center bottom;
+	animation: entrancePeepSway 0.75s ease-in-out infinite;
+	will-change: transform;
+}
+
+.second_page_entrance.move #secondEntrancePeepWrap {
+	animation: entrancePeepMove 2.1s ease-in-out forwards;
 }
 
 @keyframes entrancePeepSway {
 	0% {
-		transform: translate(-50%, -50%) rotate(-4deg) scale(1);
+		transform: rotate(-4deg) scale(1);
 	}
 	50% {
-		transform: translate(-50%, -50%) rotate(4deg) scale(1.03);
+		transform: rotate(4deg) scale(1.03);
 	}
 	100% {
-		transform: translate(-50%, -50%) rotate(-4deg) scale(1);
+		transform: rotate(-4deg) scale(1);
 	}
 }
 
@@ -1078,28 +1105,14 @@ textarea {
 		left: 50%;
 		top: 50%;
 		width: 260px;
-		transform: translate(-50%, -50%) rotate(-4deg) scale(1);
-	}
-
-	12% {
-		left: 50%;
-		top: 50%;
-		width: 260px;
-		transform: translate(-50%, -50%) rotate(4deg) scale(1.03);
-	}
-
-	24% {
-		left: 50%;
-		top: 50%;
-		width: 260px;
-		transform: translate(-50%, -50%) rotate(-4deg) scale(1);
+		transform: translate(-50%, -50%);
 	}
 
 	100% {
 		left: calc(50% - 225px);
 		top: calc(50% - 120px);
 		width: 75px;
-		transform: translate(-50%, -50%) rotate(0deg) scale(1);
+		transform: translate(-50%, -50%);
 	}
 }
 #secondEntranceConfetti {
