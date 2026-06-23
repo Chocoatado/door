@@ -1052,6 +1052,8 @@ textarea {
 	height: auto;
 	transform: translate(-50%, -50%) rotate(-4deg);
 	transform-origin: center bottom;
+	z-index: 2;
+	animation: entrancePeepSway 0.75s ease-in-out infinite;
 }
 
 .second_page_entrance.move #secondEntrancePeep {
@@ -1098,4 +1100,18 @@ textarea {
 		width: 75px;
 		transform: translate(-50%, -50%) rotate(0deg) scale(1);
 	}
+}
+#secondEntranceConfetti {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 520px !important;
+	height: 520px !important;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	pointer-events: none;
+}
+
+#secondEntrancePeep {
+	z-index: 2;
 }
