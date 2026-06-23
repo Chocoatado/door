@@ -314,6 +314,8 @@ var isPageTurning = false;
 var prevPage = document.getElementById("prevPage");
 var nextPage = document.getElementById("nextPage");
 var introCanvas = document.getElementById("canvas_intro");
+var secondPageEntrance = document.getElementById("secondPageEntrance");
+var secondEntranceTimer = null;
 
 function triggerIntroPeepSway() {
 	if (!window.level || !window.level.player) {
@@ -362,6 +364,30 @@ if (distance < 95) {
 }
 });
 
+function showSecondPageEntrance() {
+	if (!secondPageEntrance) {
+		return;
+	}
+
+	clearTimeout(secondEntranceTimer);
+
+	secondPageEntrance.classList.remove("show");
+	secondPageEntrance.classList.remove("move");
+
+	void secondPageEntrance.offsetWidth;
+
+	secondPageEntrance.classList.add("show");
+
+	secondEntranceTimer = setTimeout(function () {
+		secondPageEntrance.classList.add("move");
+	}, 650);
+
+	secondEntranceTimer = setTimeout(function () {
+		secondPageEntrance.classList.remove("show");
+		secondPageEntrance.classList.remove("move");
+	}, 3100);
+}
+			
 function restartFirstPageGame() {
 	if (typeof Level === "function" && typeof INTRO_LEVEL !== "undefined") {
 
@@ -442,8 +468,9 @@ function goToPage(pageNumber) {
 		currentPage = pageNumber;
 
 		if (currentPage === 2) {
-			restartFirstPageGame();
-		}
+	restartFirstPageGame();
+	showSecondPageEntrance();
+}
 
 		wholeContainer.style.top = "-" + ((currentPage - 1) * 100) + "%";
 
