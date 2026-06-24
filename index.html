@@ -5,6 +5,7 @@
 	<title>Happy Birthday to Niuniu🎂</title>
 	<meta name="description" content="A Birthday Surprise for Niuniu."/>
 	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="preload" as="fetch" href="assets/heart_lottie.json" crossorigin="anonymous">
 	<link rel="preload" as="image" href="assets/peep.png?v=1">
 <link rel="preload" as="image" href="assets/peep2.png?v=1">
 <link rel="preload" as="fetch" href="assets/entrance_confetti.json" crossorigin="anonymous">
@@ -159,17 +160,6 @@
 		</div>
 
 	</div>
-</div>
-
-<div id="heartLottieOverlay" class="heart_lottie_overlay">
-	<lottie-player
-		id="heartLottie"
-		src="assets/heart_lottie.json"
-		background="transparent"
-		speed="1"
-		loop
-		style="width: 100%; height: 100%;"
-	></lottie-player>
 </div>
 	
 <div id="finaleOverlay">
@@ -828,6 +818,11 @@ startCake.addEventListener("click", function (event) {
 
 	playClickSound();
 
+if (heartLottie) {
+	heartLottie.load("assets/heart_lottie.json");
+	heartLottie.stop();
+}
+	
 if (secondEntranceConfetti) {
 	secondEntranceConfetti.load("assets/entrance_confetti.json");
 }
