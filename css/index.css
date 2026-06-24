@@ -1085,7 +1085,7 @@ textarea {
 }
 
 .second_page_entrance.move #secondEntrancePeepWrap {
-	animation: entrancePeepMove 1.4s ease-in-out forwards;
+	animation: entrancePeepMove 0.9s ease-in-out forwards;
 }
 
 .second_page_entrance.move #secondEntrancePeep {
