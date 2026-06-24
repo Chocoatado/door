@@ -213,6 +213,8 @@ function startHeartLottie() {
 }
 			
 function showFinale() {
+	letterHasFinished = true;
+
 	if (finaleShown) {
 		return;
 	}
@@ -317,6 +319,18 @@ function fadeBgmVolume(targetVolume, duration) {
 	updateVolume();
 }
 
+function closeLetterAndMaybeStartHeart() {
+	letterModal.classList.remove("show");
+	clearTimeout(typingTimer);
+
+	// 关掉信后，音乐稍微恢复
+	fadeBgmVolume(0.16, 1200);
+
+	if (letterHasFinished) {
+		startHeartLottie();
+	}
+}
+			
 envelopeBtn.addEventListener("click", function () {
 	playClickSound();
 
@@ -335,25 +349,12 @@ envelopeBtn.addEventListener("click", function () {
 
 closeLetter.addEventListener("click", function () {
 	playClickSound();
-
-	letterModal.classList.remove("show");
-	clearTimeout(typingTimer);
-
-	// 关掉信后，音乐稍微恢复
-	fadeBgmVolume(0.16, 1200);
+	closeLetterAndMaybeStartHeart();
 });
 
 letterModal.addEventListener("click", function (event) {
 	if (event.target === letterModal) {
-		letterModal.classList.remove("show");
-		clearTimeout(typingTimer);
-
-		// 点背景关掉信后，音乐稍微恢复
-		fadeBgmVolume(0.16, 1200);
-
-		if (letterHasFinished) {
-			startHeartLottie();
-		}
+		closeLetterAndMaybeStartHeart();
 	}
 });
 letterModal.addEventListener("dblclick", function () {
