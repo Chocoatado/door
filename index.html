@@ -195,9 +195,10 @@ var letterHasFinished = false;
 var heartLottieStarted = false;
 var finaleShown = false;
 
-function startHeartLottie() {
-	return;
-}
+function startHeartLottie() { 
+	if (heartLottieStarted) { 
+		return; 
+	}
 
 	heartLottieStarted = true;
 
