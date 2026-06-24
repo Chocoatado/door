@@ -188,8 +188,29 @@
 var typingTimer = null;
 var finaleOverlay = document.getElementById("finaleOverlay");
 var finaleLottie = document.getElementById("finaleLottie");
+var heartLottieOverlay = document.getElementById("heartLottieOverlay");
+var heartLottie = document.getElementById("heartLottie");
+var letterHasFinished = false;
+var heartLottieStarted = false;
 var finaleShown = false;
 
+function startHeartLottie() {
+	if (heartLottieStarted) {
+		return;
+	}
+
+	heartLottieStarted = true;
+
+	if (heartLottieOverlay) {
+		heartLottieOverlay.classList.add("show");
+	}
+
+	if (heartLottie) {
+		heartLottie.stop();
+		heartLottie.play();
+	}
+}
+			
 function showFinale() {
 	if (finaleShown) {
 		return;
@@ -229,6 +250,8 @@ function startTypingLetter() {
 
 function typeNextChar() {
 if (index >= letterText.length) {
+	letterHasFinished = true;
+
 	startThirdPagePeep();
 
 	setTimeout(function () {
@@ -261,6 +284,8 @@ var delay = TYPE_SPEED;
 function showFullLetter() {
 	clearTimeout(typingTimer);
 	typedLetter.textContent = letterText;
+
+	letterHasFinished = true;
 
 	startThirdPagePeep();
 
@@ -324,6 +349,10 @@ letterModal.addEventListener("click", function (event) {
 
 		// 点背景关掉信后，音乐稍微恢复
 		fadeBgmVolume(0.16, 1200);
+
+		if (letterHasFinished) {
+			startHeartLottie();
+		}
 	}
 });
 letterModal.addEventListener("dblclick", function () {
