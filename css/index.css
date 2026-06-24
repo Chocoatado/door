@@ -1184,3 +1184,12 @@ textarea {
 #birthday_end {
 	z-index: 3 !important;
 }
+
+
+
+#heartLottieOverlay,
+#heartLottie {
+	display: none !important;
+	opacity: 0 !important;
+	visibility: hidden !important;
+}
