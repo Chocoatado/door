@@ -1142,3 +1142,22 @@ textarea {
 	visibility: hidden;
 	transition: opacity 0.08s ease, visibility 0s linear 0.08s;
 }
+
+.heart_lottie_overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1700;
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.8s ease, visibility 0s linear 0.8s;
+}
+
+.heart_lottie_overlay.show {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.8s ease;
+}
